@@ -25,6 +25,10 @@ import { Linking } from "react-native";
 import SearchableDropDown from "react-native-searchable-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
+import axios from "axios";
+import { backendIP } from "./NetworkConfig";
+
+
 
 export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
   const [selectedServices, setSelectedServices] = React.useState([]);
@@ -121,7 +125,10 @@ export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => 
         <TouchableOpacity  
         onPress={() =>{
           try {
-            AsyncStorage.setItem("current_service", JSON.stringify(selectedServices));
+            AsyncStorage.setItem("current_service", JSON.stringify(selectedServices))
+            .then(() => {
+              console.log("Data saved");
+            })
             const f = AsyncStorage.getItem("current_service");
             console.log(selectedServices);
           
@@ -202,7 +209,7 @@ export function LabClinic() {
           styles.downNavigator,
           styles.shadows,
           {
-            bottom: scale(-35),
+            bottom: scale(-70),
           },
         ]}
       >

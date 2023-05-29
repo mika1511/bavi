@@ -16,6 +16,9 @@ const widthD = Dimensions.get("window").width;
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
+      text: "cancel", status: "cancel" 
+    },
+    {
       text: "WhatsApp",
       onPress: () => Linking.openURL(`https://wa.me/+918871306576`),
     },

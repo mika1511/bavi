@@ -9,6 +9,24 @@ import HomeIconSvg from "./assets/home_icon.svg";
 import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
+import React from "react";
+import axios from "axios";
+import { backendIP } from "./NetworkConfig";
+
+const createOrder = async(servicesName, price, phoneNo) => {
+  try {
+    const response = await axios.get(backendIP + "/create_order", {
+      params: {
+        name_array: servicesName,
+        price: price,
+        phone_number: phoneNo
+      }
+    });
+    console.log(response.data);
+  }catch(error) {
+    console.log(error);
+  }
+}
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
@@ -16,7 +34,28 @@ import { Linking } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function PaymentScreen() {
-  const test = AsyncStorage.getItem("current_service");
+  const services = [];
+  const [servicesString, setServicesString] = React.useState(null);
+  const [mTotal, setTotal] = React.useState(0);
+  const [mPhone, setPhone] = React.useState(null);
+  
+  React.useEffect(() => {
+    AsyncStorage.getItem("current_service").then((value) => {
+      const cur_data = JSON.parse(value);
+      let total_price = 0;
+      for (var i = 0; i < cur_data.length; i++) {
+        services.push(cur_data[i].name);
+        total_price += cur_data[i].price;
+      }
+      console.log(total_price);
+      setTotal(total_price);
+      setServicesString(services.toString());
+    AsyncStorage.getItem("PhoneNumber").then((value) => {
+      setPhone(value);
+    })
+    });
+  }, [])
+
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
@@ -28,15 +67,42 @@ export function PaymentScreen() {
             marginTop: scale(150),
           },
         ]}
-      ><View>
-        <Text>Mode of payment:</Text>
-      </View>
-        <TouchableOpacity style={[styles.services_box1, styles.shadow]}>
+      >
+        <View>
+          <Text style={{
+            marginTop: scale(-60),
+            fontWeight: "600",
+            fontSize: scale(20),
+            marginRight: scale(20),
+            color: "black",
+            borderWidth: 2,
+            borderColor: "#2AACAC",
+            borderRadius: 12,
+            borderTopWidth: scale(4),
+            borderLeftWidth: scale(0),
+            borderBottomWidth: scale(4),
+            borderRightWidth: scale(0),
+            height: scale(45),
+            textAlignVertical: "center",
+          }}>{"   Amount Payable: ₹ "}{mTotal}{"  "}</Text>
+        </View>
+        <View style={{
+          marginTop: scale(19.69),
+        }}>
+
+        </View>
+        <TouchableOpacity 
+        onPress={() => {
+          console.log(servicesString)
+          createOrder(servicesString, mTotal, mPhone);
+          //Linking.openURL("upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am="+mTotal);
+        }}
+        style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,
               {
-                marginTop: scale(10),
+                marginTop: scale(20),
               },
             ]}
           >
@@ -47,28 +113,25 @@ export function PaymentScreen() {
 
         <View
           style={{
-            marginTop: heightD * 0.01,
+            marginTop: scale(0),
           }}
         ></View>
         <TouchableOpacity
-        onPress={() => {
-          //console.log(AsyncStorage.getItem("current_service"));
-        }}
-        style={[styles.services_box1, styles.shadow]}>
+          onPress={() => {}}
+          style={[styles.services_box1, styles.shadow]}
+        >
           <Text
             style={[
               styles.servicesText,
               {
-                marginTop: scale(10),
+                marginTop: scale(20),
               },
             ]}
           >
             {" "}
-            {" "}Pay via Cash{" "}
+            Pay via Cash{" "}
           </Text>
         </TouchableOpacity>
-
-        
 
         <View
           style={{
@@ -81,7 +144,7 @@ export function PaymentScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(270),
+            marginTop: scale(260),
           },
         ]}
       >
@@ -130,10 +193,10 @@ const styles = StyleSheet.create({
   },
   services_box1: {
     width: widthD * 0.8,
-    height: 100,
+    height: scale(80),
     backgroundColor: "white",
-    borderRadius: 18,
-    marginBottom: 30,
+    borderRadius: scale(18),
+    marginBottom: scale(30),
     shadowOffset: { width: 4, height: 4 },
     shadowColor: "#2AA8AC",
     shadowOpacity: 50,
@@ -141,8 +204,7 @@ const styles = StyleSheet.create({
     elevation: 11,
   },
   servicesText: {
-    //textAlign: "center",
-    //marginTop: 40,
+    textAlign: "center",
     fontSize: 26,
     fontWeight: "bold",
     color: "#2aacac",

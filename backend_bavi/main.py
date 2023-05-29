@@ -14,6 +14,7 @@ class Parameter(BaseModel):
     address_: str
     gender_: str
 
+
 app = FastAPI()
 
 origins = ["*"]
@@ -29,7 +30,7 @@ app.add_middleware(
 
 import models.Customer
 from models.ready_database import session
-
+import models.Orders
 
 @app.exception_handler(IntegrityError)
 async def handle_unique_constraint_violation(request, exc):
@@ -124,6 +125,17 @@ async def update(phone_no: str, new_name: str):
         return {"Success" : "true"}
      else:
         return JSONResponse(content={"m_response": "Customer not found"}, status_code=404)
+
+@app.get("/create_order")
+async def create(name_array, price, phone_number):
+    try:
+        order = session.add(models.Orders.Order(name_array, price, phone_number))
+        session.commit()
+        return {"Success" : "true"}
+    except:
+        session.rollback()
+        return {"Success": "false"}
+
 
 # @app.get("/get_user_details")
 # async def get_details(phone_no: str, response: Response):

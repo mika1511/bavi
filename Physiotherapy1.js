@@ -13,6 +13,21 @@ import TelephoneIcon from "./assets/telephoneIcon.svg";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
+import { Alert } from "react-native";
+
+const createContactOption = () =>
+  Alert.alert("Open With ", "Choose an Option", [
+    {
+      text: "cancel", status: "cancel" 
+    },
+    {
+      text: "WhatsApp",
+      onPress: () => Linking.openURL(`https://wa.me/+918871306576`),
+    },
+    { text: "Phone Call", onPress: () => Linking.openURL(`tel:$8871306576`) },
+  ]);
+
+
 
 export function Physiotherapy1() {
   const Tab = createBottomTabNavigator();
@@ -51,7 +66,7 @@ export function Physiotherapy1() {
         <TouchableOpacity
           style={[styles.services_box1, styles.shadow]}
           onPress={() => {
-            Linking.openURL(`tel:$8871306576`);
+            createContactOption();
           }}
         >
           <TelephoneIcon
