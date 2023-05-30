@@ -15,7 +15,6 @@ import React from "react";
 //import HomeIcon from './assets/home_icon.svg'
 import { HomecareScreen } from "./homecare";
 import { MainScreen } from "./main_screen";
-``;
 import { Linking } from "react-native";
 import ChatImage from "./assets/download.svg";
 import HomeIconSvg from "./assets/home_icon.svg";
@@ -267,7 +266,7 @@ export function HomeScreen() {
            
         <View
           style={{
-            marginTop: scale(25),
+            marginTop: scale(30),
           }}
         >
           
@@ -284,6 +283,9 @@ export function HomeScreen() {
                 justifyContent: "center",
                 paddingVertical: scale(10),
               }}
+              onPress={() => {
+                Navigation.navigate("HomeScreen");
+              }}
             >
               <PersonIcon
                 width={ratioedSize(scale(27), scale(30))}
@@ -292,7 +294,7 @@ export function HomeScreen() {
                   marginTop: ratioedSize(scale(-70), scale(-75)),
                 }}
                 onPress={() => {
-                  Navigation.navigate("Settings");
+                  Navigation.navigate("Settings");  
                 }}
               />
             </View>

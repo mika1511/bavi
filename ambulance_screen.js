@@ -21,7 +21,7 @@ export function AmbulanceScreen() {
         style={[
           styles.servicesContainer,
           {
-            marginTop: heightD * 0.02,
+            marginTop: heightD * 0.015,
           },
         ]}
       >
@@ -98,7 +98,7 @@ export function AmbulanceScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(20),
+            marginTop: scale(5),
             //flex:1,
             bottom: 0,
           },

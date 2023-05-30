@@ -19,7 +19,7 @@ export function HomecareScreen() {
         style={[
           styles.servicesContainer,
           {
-            marginTop: heightD * 0.02,
+            marginTop: heightD * 0.01,
           },
         ]}
       >
@@ -97,7 +97,7 @@ export function HomecareScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(30),
+            marginTop: scale(10),
           },
         ]}
       >

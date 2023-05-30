@@ -53,7 +53,7 @@ export function MachineScreen() {
             {"  "}
             BiPAP Machine{" "}
           </Text>
-          <Text style={styles.servicesText}>  Rs.1000 /-</Text>
+          <Text style={styles.servicesText}>  Rs.1000/day</Text>
         </TouchableOpacity>
 
         <View
@@ -73,7 +73,7 @@ export function MachineScreen() {
             {"  "}
             CPAP Machine:{" "}
           </Text>
-          <Text style={styles.servicesText}>  Rs.1000 /-</Text>
+          <Text style={styles.servicesText}>  Rs.1000/day</Text>
         </TouchableOpacity>
 
         <View

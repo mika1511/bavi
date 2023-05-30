@@ -23,11 +23,17 @@ const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import SearchableDropDown from "react-native-searchable-dropdown";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
+import axios from "axios";
+import { backendIP } from "./NetworkConfig";
 
-const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
+
+
+export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
   const [selectedServices, setSelectedServices] = React.useState([]);
   const [searchQuery, setSearchQuery] = React.useState("");
-
+  const Navigation = useNavigation();
   const handleServiceSelection = (item) => {
     const newService = {
       id: selectedServices.length + 1,
@@ -36,6 +42,7 @@ const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
     };
     setSelectedServices((prevSelectedServices) => [...prevSelectedServices, newService]);
     onServiceSelected(item.name, item.price);
+  
   };
 
   const handleRemoveService = (id) => {
@@ -111,17 +118,53 @@ const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
           fontWeight: "bold",
          }}>Total Price: Rs {selectedServices.reduce((total, service) => total + service.price, 0)}</Text>
       </ScrollView>
+      <View style={{
+        marginTop: scale(30),
+        marginLeft: scale(200),
+      }}>
+        <TouchableOpacity  
+        onPress={() =>{
+          try {
+            AsyncStorage.setItem("current_service", JSON.stringify(selectedServices))
+            .then(() => {
+              console.log("Data saved");
+            })
+            const f = AsyncStorage.getItem("current_service");
+            console.log(selectedServices);
+          
+            Navigation.navigate("paymentScreen");
+          } catch(error) {
+            console.log(error);
+          }
+        }}
+        style={{
+          width: scale(60),
+          borderRadius: 11,
+          height: scale(40),
+          backgroundColor: "#2AACAC"
+        }}>
+          <Text style={{
+            color: "white",
+            textAlign: "center",
+            fontSize: scale(16),
+            marginTop: scale(7),
+            fontWeight: "bold",
+          }}>Next{" >"}</Text>
+        </TouchableOpacity>
+      </View>
      
       </View>
     </View>
   );
 };
 
+
+
 export function Radiology() {
+ 
+  const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedServiceName, setSelectedServiceName] = React.useState(null);
   const [selectedServicePrice, setSelectedServicePrice] = React.useState(null);
-  const [searchQuery, setSearchQuery] = React.useState("");
-
   const handleSomething = (name, price) => {
     setSelectedServiceName(name);
     setSelectedServicePrice(price);
@@ -161,31 +204,12 @@ export function Radiology() {
           onServiceSelected={handleSomething}
         ></CustomSearchableDropdown>
       </View>
-      <View style={{
-        marginTop: scale(30),
-        marginLeft: scale(200),
-      }}>
-        <TouchableOpacity style={{
-          width: scale(60),
-          borderRadius: 11,
-          height: scale(40),
-          backgroundColor: "#2AACAC"
-        }}>
-          <Text style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: scale(16),
-            marginTop: scale(7),
-            fontWeight: "bold",
-          }}>Next{" >"}</Text>
-        </TouchableOpacity>
-      </View>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            bottom: scale(-35),
+            bottom: scale(-70),
           },
         ]}
       >

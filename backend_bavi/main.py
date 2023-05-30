@@ -6,6 +6,8 @@ from sqlalchemy.exc import IntegrityError
 from fastapi import Response, status
 import json
 from fastapi.responses import JSONResponse
+from sqlalchemy.sql import desc
+
 
 class Parameter(BaseModel):
     first_name_: str
@@ -14,6 +16,13 @@ class Parameter(BaseModel):
     address_: str
     gender_: str
 
+class Order(BaseModel):
+    FirstName: str
+    ServiceName: str
+    TotalPrice: int
+    PhoneNumber: str
+    Pending: bool
+    PaymentOption: str
 
 app = FastAPI()
 
@@ -126,15 +135,31 @@ async def update(phone_no: str, new_name: str):
      else:
         return JSONResponse(content={"m_response": "Customer not found"}, status_code=404)
 
-@app.get("/create_order")
-async def create(name_array, price, phone_number):
+@app.post("/create_order")
+async def create(order: Order):
     try:
-        order = session.add(models.Orders.Order(name_array, price, phone_number))
+        # Add the new order to the database
+        session.add(models.Orders.Order(FirstName=order.FirstName, ServiceName=order.ServiceName, TotalPrice=order.TotalPrice, PhoneNumber=order.PhoneNumber, Pending=order.Pending, PaymentOption=order.PaymentOption))
         session.commit()
-        return {"Success" : "true"}
-    except:
+
+        # Fetch all the Order tables in descending order by ID
+        order_tables = session.query(models.Orders.Order.__table__).order_by(desc(models.Orders.Order.id)).all()
+
+        # Check if there are more than 100 tables
+        if len(order_tables) > 10:
+            # Keep the latest 10 tables
+            latest_tables = order_tables[:10]
+            latest_table_ids = [table.id for table in latest_tables]
+
+            # Delete tables that are not in the latest 10
+            session.query(models.Orders.Order.__table__).filter(models.Orders.Order.id.notin_(latest_table_ids)).delete(synchronize_session=False)
+            session.commit()
+
+        return {"Success": "true"}
+    except Exception as e:
         session.rollback()
-        return {"Success": "false"}
+        print(e)
+        return {"Success": str(e)}
 
 
 # @app.get("/get_user_details")

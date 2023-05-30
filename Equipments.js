@@ -22,7 +22,7 @@ export function EquipmentsScreen() {
         style={[
           styles.servicesContainer,
           {
-            marginTop: heightD * 0.03,
+            marginTop: heightD * 0.02,
           },
         ]}
       >
@@ -84,7 +84,7 @@ export function EquipmentsScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(75),
+            marginTop: scale(55),
             //flex:1,
             bottom: 0,
           },

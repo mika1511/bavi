@@ -272,13 +272,13 @@ export function SettingsPage({ navigation }) {
           >
             <Text
               style={{
-                marginRight: scale(80),
+                marginRight: scale(140),
                 fontSize: 18,
                 fontWeight: "bold",
                 color: "white",
               }}
             >
-              Apply for a Doctor/Nurse
+              Career Options
             </Text>
           </TouchableOpacity>
           <TouchableOpacity

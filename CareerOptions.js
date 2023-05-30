@@ -25,7 +25,7 @@ import axios from "axios";
 import { Alert } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 
-const Options = ["Doctor", "Nurse"];
+const Options = ["Doctor", "Nurse","Attender"];
 
 export function CareerOption() {
   const navigation = useNavigation();

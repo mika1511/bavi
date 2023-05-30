@@ -53,7 +53,7 @@ export function BedScreen() {
             {"  "}
             Plain Bed:{" "}
           </Text>
-          <Text style={styles.servicesText}>  Rs.250 /-</Text>
+          <Text style={styles.servicesText}>  Rs.250/day</Text>
         </TouchableOpacity>
 
         <View
@@ -73,7 +73,7 @@ export function BedScreen() {
             {" "}
             {" "}Fowler Bed:{" "}
           </Text>
-          <Text style={styles.servicesText}>{"  "}Rs.300 /-</Text>
+          <Text style={styles.servicesText}>{"  "}Rs.300/day</Text>
         </TouchableOpacity>
 
         <View

@@ -53,7 +53,7 @@ export function MonitorScreen() {
             {"  "}
             Monitor Charges:
           </Text>
-          <Text style={styles.servicesText}>  Rs.500 /-</Text>
+          <Text style={styles.servicesText}>  Rs.500/day</Text>
         </TouchableOpacity>
 
         <View

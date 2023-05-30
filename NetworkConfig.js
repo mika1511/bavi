@@ -1,1 +1,1 @@
-export const backendIP = "https://9a10-49-36-19-134.ngrok-free.app";
+export const backendIP = "http://192.168.29.125:6969";
