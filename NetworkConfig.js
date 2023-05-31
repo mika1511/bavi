@@ -1,1 +1,1 @@
-export const backendIP = "http://192.168.29.125:6969";
+export const backendIP = "https://test-service-4hbg.onrender.com";

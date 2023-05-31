@@ -14,8 +14,8 @@ db_port = 3306
 ssl_ca = "/etc/ssl/certs/ca-certificates.crt"
 
 
-#database_url = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}?ssl_ca={ssl_ca}"
-engine = create_engine("sqlite:///C:\\Users\\hp\\Desktop\\myDatabase.db", echo=True)
+database_url = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}?ssl_ca={ssl_ca}"
+engine = create_engine(database_url, echo=True)
 
 meta = MetaData()
 meta.create_all(engine)

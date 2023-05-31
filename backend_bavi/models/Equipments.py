@@ -6,9 +6,9 @@ from .Base import Base
 class Equipment(Base):
     __tablename__ = "Equipment"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    Name = Column(String)
+    Name = Column(String(200))
     Quantity = Column(Integer)
-    Dealer = Column(String)
+    Dealer = Column(String(200))
 
     def __init__(self, Name, Quantity, Dealer):
         self.Name = Name

@@ -9,7 +9,7 @@ import HomeIconSvg from "./assets/home_icon.svg";
 import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
@@ -18,7 +18,8 @@ import { Alert } from "react-native";
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
-      text: "cancel", status: "cancel" 
+      text: "cancel",
+      status: "cancel",
     },
     {
       text: "WhatsApp",
@@ -26,7 +27,6 @@ const createContactOption = () =>
     },
     { text: "Phone Call", onPress: () => Linking.openURL(`tel:$8871306576`) },
   ]);
-
 
 export function O2Screen() {
   const Tab = createBottomTabNavigator();
@@ -37,11 +37,27 @@ export function O2Screen() {
         style={[
           styles.servicesContainer,
           {
-            marginTop: heightD * 0.14,
+            marginTop: heightD * 0.1,
           },
         ]}
       >
-        <TouchableOpacity style={[styles.services_box1, styles.shadow]}>
+        <TouchableOpacity 
+         onPress={() => {
+          const paymentObject = [{'id': 1, 'name': "O2 CYLINDER BOOKING", 'price' : 10000}];
+          try {
+            AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
+            .then(() => {
+              console.log("Data saved");
+            })
+            const f = AsyncStorage.getItem("current_service");
+            console.log(paymentObject);
+          
+            Navigation.navigate("paymentScreen");
+          } catch(error) {
+            console.log(error);
+          }
+        }}
+        style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,
@@ -98,11 +114,46 @@ export function O2Screen() {
         ></View>
       </View>
       <View
+        style={{
+          width: "80%",
+          marginTop: scale(100),
+          borderWidth: scale(1.5),
+          borderRadius: scale(11),
+        }}
+      >
+        <Text
+          style={{
+            paddingTop: scale(10),
+            paddingLeft: scale(10),
+            paddingRight: scale(10),
+            fontSize: 20,
+            fontWeight: "bold",
+            width: "70%",
+          }}
+        >
+          **NOTE**
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            //textAlign: "center",
+            paddingBottom: scale(10),
+            paddingLeft: scale(10),
+            paddingRight: scale(10),
+            width: "95%",
+          }}
+        >
+          {
+            "Rs.𝟭𝟬,𝟬𝟬𝟬 /- needs to be deposited, the rest will be refunded based on number of days rented"
+          }
+        </Text>
+      </View>
+      <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(300),
+            //marginTop: scale(0),
           },
         ]}
       >
@@ -172,7 +223,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    marginTop: scale(100),
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

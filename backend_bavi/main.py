@@ -9,12 +9,15 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.sql import desc
 
 
+career_data = {}
+
 class Parameter(BaseModel):
     first_name_: str
     last_name_: str
     phone_: str
     address_: str
     gender_: str
+    Pending: str
 
 class Order(BaseModel):
     FirstName: str
@@ -53,7 +56,7 @@ from models.ready_database import session
 @app.post("/create_acc")
 async def add_account(params: Parameter, response: Response):
     session.add(models.Customer.Customer(first_name=params.first_name_, last_name=params.last_name_, 
-                    Phone=params.phone_, Address=params.address_, Gender=params.gender_))
+                    Phone=params.phone_, Address=params.address_, Gender=params.gender_, Pending=params.Pending))
     try:
         session.commit()
         return {"Success" : "True"}
@@ -135,6 +138,17 @@ async def update(phone_no: str, new_name: str):
      else:
         return JSONResponse(content={"m_response": "Customer not found"}, status_code=404)
 
+@app.get("/register_as")
+async def register(phone_no, career, specialization):
+    customer = session.query(models.Customer.Customer).filter(models.Customer.Customer.Phone == phone_no).first()
+    if customer:
+        customer.Pending = career
+        session.commit()
+        return {"Success" : "true"}
+    else:
+        return {"Success" : "fucked"}
+
+
 @app.post("/create_order")
 async def create(order: Order):
     try:
@@ -146,7 +160,7 @@ async def create(order: Order):
         order_tables = session.query(models.Orders.Order.__table__).order_by(desc(models.Orders.Order.id)).all()
 
         # Check if there are more than 100 tables
-        if len(order_tables) > 10:
+        if len(order_tables) > 100:
             # Keep the latest 10 tables
             latest_tables = order_tables[:10]
             latest_table_ids = [table.id for table in latest_tables]

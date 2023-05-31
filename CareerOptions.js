@@ -24,11 +24,41 @@ import React from "react";
 import axios from "axios";
 import { Alert } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
+import { backendIP } from "./NetworkConfig";
+const Options = ["Doctor", "Nurse", "Attender"];
 
-const Options = ["Doctor", "Nurse","Attender"];
+const createCareerAlert = () => {
+  Alert.alert(
+    "Thankyou for applying",
+    "Your request has been sent successfully- Wait for admin's approval",
+    [
+      {
+        text: "OK",
+        // onPress: () => Navigation.navigate("HomeScreen"),
+      },
+    ]
+  );
+};
+
+const registerAs = async (option, specialization) => {
+  try {
+    const ph = await AsyncStorage.getItem("PhoneNumber");
+    const response = await axios.get(backendIP + "/register_as", {
+      params: {
+        phone_no: ph,
+        career: option,
+        specialization: "none",
+      },
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export function CareerOption() {
   const navigation = useNavigation();
+  const [mCareer, setCareer] = React.useState("");
   const [mSpecialization, setSpecialization] = React.useState("");
 
   return (
@@ -68,9 +98,11 @@ export function CareerOption() {
         </View>
 
         <View>
-          <View style={{
-            alignSelf: "center",
-          }}>
+          <View
+            style={{
+              alignSelf: "center",
+            }}
+          >
             <SelectDropdown
               buttonTextStyle={{
                 color: "#2AACAC",
@@ -78,7 +110,7 @@ export function CareerOption() {
               buttonStyle={[styles.input_button, styles.shadow]}
               data={Options}
               onSelect={(selectedItem, index) => {
-                setSpecialization(selectedItem);
+                setCareer(selectedItem);
               }}
               buttonTextAfterSelection={(selectedItem, index) => {
                 return selectedItem;
@@ -101,7 +133,14 @@ export function CareerOption() {
               setSpecialization((prev) => e);
             }}
           />
-          <TouchableOpacity style={[styles.login_button, styles.shadow]}>
+          <TouchableOpacity
+            onPress={() => {
+              registerAs(mCareer, "none");
+              createCareerAlert();
+              navigation.navigate("Settings");
+            }}
+            style={[styles.login_button, styles.shadow]}
+          >
             <Text style={{ color: "#2AACAC", fontWeight: "bold" }}>
               {" "}
               SUBMIT{" "}
@@ -114,37 +153,37 @@ export function CareerOption() {
 }
 
 const styles = StyleSheet.create({
-    input_button: {
-        width: "80%",
-        borderRadius: 1,
-        height: scale(50),
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: scale(50),
-        alignSelf: "center",
-        borderRadius: 11,
-        backgroundColor: "#FFFFFF",
-        textAlign: "center",
-        textAlignVertical: "center",
-      },
-      shadow: {
-        shadowOffset: { width: 4, height: 4 },
-        shadowColor: "#2AACAC",
-        shadowOpacity: 20,
-        shadowRadius: 2,
-        elevation: 5,
-      },
-      login_button: {
-        width: "30%",
-        borderRadius: 11,
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 50,
-        //marginLeft: 135,
-        alignSelf: "center",
-        backgroundColor: "white",
-        color: "#2AACAC",
-        fontWeight: "bold",
-      },
-})
+  input_button: {
+    width: "80%",
+    borderRadius: 1,
+    height: scale(50),
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: scale(50),
+    alignSelf: "center",
+    borderRadius: 11,
+    backgroundColor: "#FFFFFF",
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
+  shadow: {
+    shadowOffset: { width: 4, height: 4 },
+    shadowColor: "#2AACAC",
+    shadowOpacity: 20,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  login_button: {
+    width: "30%",
+    borderRadius: 11,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 50,
+    //marginLeft: 135,
+    alignSelf: "center",
+    backgroundColor: "white",
+    color: "#2AACAC",
+    fontWeight: "bold",
+  },
+});

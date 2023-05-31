@@ -59,6 +59,7 @@ export function CreateAccScreen({ navigation }) {
           phone_: phone,
           address_: address,
           gender_: gender,
+          Pending: "None",
         }
       );
     } catch (error) {

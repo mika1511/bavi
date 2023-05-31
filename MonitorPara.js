@@ -9,6 +9,7 @@ import HomeIconSvg from "./assets/home_icon.svg";
 import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
@@ -41,7 +42,23 @@ export function MonitorScreen() {
           },
         ]}
       >
-        <TouchableOpacity style={[styles.services_box1, styles.shadow]}>
+        <TouchableOpacity 
+         onPress={() => {
+          const paymentObject = [{'id': 1, 'name': "MONITOR 5-PARA BOOKING", 'price' : 500}];
+          try {
+            AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
+            .then(() => {
+              console.log("Data saved");
+            })
+            const f = AsyncStorage.getItem("current_service");
+            console.log(paymentObject);
+          
+            Navigation.navigate("paymentScreen");
+          } catch(error) {
+            console.log(error);
+          }
+        }}
+        style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,

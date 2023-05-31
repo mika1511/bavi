@@ -8,12 +8,12 @@ from sqlalchemy import UniqueConstraint
 class Doctor(Base):
     __tablename__ = "Doctor"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    Phone  = Column(String, unique=True)
-    Address = Column(String)
-    Gender = Column(String)
-    Specialization = Column(String)
+    first_name = Column(String(200))
+    last_name = Column(String(200))
+    Phone  = Column(String(12), unique=True)
+    Address = Column(String(200))
+    Gender = Column(String(50))
+    Specialization = Column(String(200))
     isDoctor = Column(Boolean)
     __table_args__ = (UniqueConstraint('Phone', name='_phone_uc_'),)
 

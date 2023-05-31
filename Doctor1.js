@@ -9,9 +9,11 @@ import { useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
 import { Linking } from "react-native";
 import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+
 
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
@@ -39,7 +41,23 @@ export function Doctor1() {
           },
         ]}
       >
-        <TouchableOpacity style={[styles.services_box1, styles.shadow]}>
+        <TouchableOpacity 
+        onPress={() => {
+          const paymentObject = [{'id': 1, 'name': "DOCTOR BOOKING", 'price' : 750}];
+          try {
+            AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
+            .then(() => {
+              console.log("Data saved");
+            })
+            const f = AsyncStorage.getItem("current_service");
+            console.log(paymentObject);
+          
+            Navigation.navigate("paymentScreen");
+          } catch(error) {
+            console.log(error);
+          }
+        }}
+        style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,
