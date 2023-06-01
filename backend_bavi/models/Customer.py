@@ -25,3 +25,5 @@ class Customer(Base):
 
     # def __repr__(self):
     #     return f"Buyer('{self.first_name}', '{self.last_name}', '{self.Phone}', '{self.Address}', '{self.Gender}')"
+
+  

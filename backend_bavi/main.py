@@ -44,12 +44,13 @@ import models.Customer
 from models.ready_database import session
 import models.Orders
 
-@app.exception_handler(IntegrityError)
-async def handle_unique_constraint_violation(request, exc):
-    return {
-        "status_code" : "400",
-        "content" : {'detail': 'Phone number already exists'}
-    }
+# @app.exception_handler(IntegrityError)
+# async def handle_unique_constraint_violation(request, exc):
+#     return {
+#         "status_code" : "400",
+#         "content" : {'detail': 'Phone number already exists'}
+#     }
+
 import models.Customer
 from models.ready_database import session
 
