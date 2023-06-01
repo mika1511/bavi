@@ -107,7 +107,7 @@ export function HomeScreen() {
             marginTop: ratioedSize(scale(10), scale(5)),
           }}
         >
-          <SearchBar
+          {/* <SearchBar
             lightTheme
             round
             placeholder="Type here..."
@@ -119,13 +119,13 @@ export function HomeScreen() {
             inputContainerStyle={{
               backgroundColor: "white",
             }}
-          ></SearchBar>
-        </View>
+          ></SearchBar> */}
+        </View> 
 
         <View
           style={{
             marginLeft: scale(20),
-            marginTop: scale(30),
+            marginTop: scale(100),
           }}
         >
           <Text
