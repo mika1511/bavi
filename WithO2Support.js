@@ -46,6 +46,18 @@ export function WithO2Support() {
       setCount(count - 1);
     }
   };
+
+  const [mcount, msetCount] = useState(0);
+
+  const mincrement = () => {
+    msetCount(mcount + 1);
+  };
+
+  const mdecrement = () => {
+    if (mcount > 0) {
+      msetCount(mcount - 1);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -257,7 +269,7 @@ export function WithO2Support() {
                   borderRadius: scale(20),
                   backgroundColor: "#2aacac",
                 }}
-                onPress={decrement}
+                onPress={mdecrement}
               >
                 <Text
                   style={{
@@ -274,7 +286,7 @@ export function WithO2Support() {
                 placeholder="0"
                 keyboardType="numeric"
                 maxLength={3}
-                value={count.toString()}
+                value={mcount.toString()}
                 onChangeText={(value) =>
                   setCount(value == 0 ? 0 : parseInt(value))
                 }
@@ -293,7 +305,7 @@ export function WithO2Support() {
                   borderRadius: scale(20),
                   backgroundColor: "#2aacac",
                 }}
-                onPress={increment}
+                onPress={mincrement}
               >
                 <Text
                   style={{
@@ -309,7 +321,7 @@ export function WithO2Support() {
             </View>
             <TouchableOpacity
              onPress={() => {
-              const paymentObject = [{'id': 1, 'name': "Ambulance(NON AC-02 Support)", 'price' : count*16}];
+              const paymentObject = [{'id': 1, 'name': "Ambulance(NON AC-02 Support)", 'price' : mcount*16}];
               try {
                 AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
                 .then(() => {

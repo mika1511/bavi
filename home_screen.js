@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity, style } from "react-native";
 
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
@@ -55,17 +55,38 @@ export function HomeScreen() {
           flex: 1,
         }}
       >
-        <View
+        {/* <View
           style={{
             alignSelf: "center",
           }}
         >
           <BgBox height={ratioedSize(scale(175), scale(195))} width={ratioedSize(scale(500), scale(500))}></BgBox>
+        </View> */}
+        <View style={{
+          width: scale(320),
+          height: scale(120),
+          alignSelf: "center",
+          backgroundColor: "#2AA8A0",
+          borderRadius: scale(18),
+          marginBottom: scale(30),
+        }}>
+          {/* <View style={{
+            width: scale(305),
+            height: scale(82),
+            alignSelf: "center",
+            backgroundColor: "white",
+            borderRadius: scale(18),
+            marginTop: scale(110),
+          }}></View>  */}
         </View>
+           
+
+
+        
 
         <View
           style={{
-            marginTop: ratioedSize(scale(-170), scale(-180)),
+            marginTop: ratioedSize(scale(-130), scale(-140)),
             marginLeft: ratioedSize(scale(40), scale(30))
           }}
         >
@@ -122,10 +143,23 @@ export function HomeScreen() {
           ></SearchBar> */}
         </View> 
 
+        <View style={{
+          borderWidth: 2,
+          borderRadius: scale(20),
+          borderColor: "grey",
+          height: scale(100),
+          width:scale(320),
+          alignSelf:"center",
+          marginTop: scale (10),
+
+        }}></View>
+
+        
+
         <View
           style={{
             marginLeft: scale(20),
-            marginTop: scale(100),
+            marginTop: scale(0),
           }}
         >
           <Text
@@ -349,4 +383,11 @@ const styles = StyleSheet.create({
     shadowRadius: scale(2),
     elevation: scale(11),
   },
+  // servicecont: {
+  //   width: "80%",
+  //   height: 100,
+  //   backgroundColor: "#2AA8A0",
+  //   borderRadius: 18,
+  //   marginBottom: 30,
+  // },
 });
