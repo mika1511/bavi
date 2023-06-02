@@ -28,9 +28,10 @@ import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
 import axios from "axios";
 import { backendIP } from "./NetworkConfig";
 
-
-
-export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => {
+export const CustomSearchableDropdown = ({
+  serviceData,
+  onServiceSelected,
+}) => {
   const [selectedServices, setSelectedServices] = React.useState([]);
   const [searchQuery, setSearchQuery] = React.useState("");
   const Navigation = useNavigation();
@@ -40,9 +41,11 @@ export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => 
       name: item.name,
       price: item.price,
     };
-    setSelectedServices((prevSelectedServices) => [...prevSelectedServices, newService]);
+    setSelectedServices((prevSelectedServices) => [
+      ...prevSelectedServices,
+      newService,
+    ]);
     onServiceSelected(item.name, item.price);
-  
   };
 
   const handleRemoveService = (id) => {
@@ -92,76 +95,118 @@ export const CustomSearchableDropdown = ({ serviceData, onServiceSelected }) => 
         underlineColorAndroid="transparent"
       />
 
-      <View style=
-          {{
-            marginTop: scale(50),
-            height: 400,
-          }}
+      <View
+        style={{
+          marginTop: scale(50),
+          height: 400,
+        }}
       >
         <ScrollView>
-        {selectedServices.map((service) => (
-          <View key={service.id}>
-            <Text style={{
-              maxWidth: "80%",
+          {selectedServices.map((service) => (
+            <View key={service.id}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text
+                  style={{
+                    maxWidth: "80%",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    color: "#444444",
+                  }}
+                >
+                  {service.id}. {service.name}
+                </Text>
+
+                <Text
+                  style={{
+                    maxWidth: "80%",
+                    fontWeight: "bold",
+                    fontStyle: "italic",
+                    color: "#444444",
+                  }}
+                >
+                  Rs {service.price}
+                </Text>
+              </View>
+              <TouchableOpacity onPress={() => handleRemoveService(service.id)}>
+                <Text
+                  style={{
+                    color: "#DB1A3C",
+                  }}
+                >
+                  Remove
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+          <Text
+            style={{
               fontWeight: "bold",
-              fontStyle: "italic",
-              color: "#444444",
-            }}>{service.name} - Rs {service.price}</Text>
-            <TouchableOpacity onPress={() => handleRemoveService(service.id)}>
-              <Text style={{
-                color: "#DB1A3C",
-              }}>Remove</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-         <Text style={{
-          fontWeight: "bold",
-         }}>Total Price: Rs {selectedServices.reduce((total, service) => total + service.price, 0)}</Text>
-      </ScrollView>
-      <View style={{
-        marginTop: scale(30),
-        marginLeft: scale(200),
-      }}>
-        <TouchableOpacity  
-        onPress={() =>{
-          try {
-            AsyncStorage.setItem("current_service", JSON.stringify(selectedServices))
-            .then(() => {
-              console.log("Data saved");
-            })
-            const f = AsyncStorage.getItem("current_service");
-            console.log(selectedServices);
-          
-            Navigation.navigate("paymentScreen");
-          } catch(error) {
-            console.log(error);
-          }
-        }}
-        style={{
-          width: scale(60),
-          borderRadius: 11,
-          height: scale(40),
-          backgroundColor: "#2AACAC"
-        }}>
-          <Text style={{
-            color: "white",
-            textAlign: "center",
-            fontSize: scale(16),
-            marginTop: scale(7),
-            fontWeight: "bold",
-          }}>Next{" >"}</Text>
-        </TouchableOpacity>
-      </View>
-     
+              fontSize: scale(16),
+              borderTopWidth: 1,
+              borderColor: "grey"
+            }}
+          >
+            Total Price: Rs{" "}
+            {selectedServices.reduce(
+              (total, service) => total + service.price,
+              0
+            )}
+          </Text>
+        </ScrollView>
+        <View
+          style={{
+            marginTop: scale(30),
+            marginLeft: scale(200),
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => {
+              try {
+                AsyncStorage.setItem(
+                  "current_service",
+                  JSON.stringify(selectedServices)
+                ).then(() => {
+                  console.log("Data saved");
+                });
+                const f = AsyncStorage.getItem("current_service");
+                console.log(selectedServices);
+
+                Navigation.navigate("paymentScreen");
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+            style={{
+              width: scale(60),
+              borderRadius: 11,
+              height: scale(40),
+              backgroundColor: "#2AACAC",
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                textAlign: "center",
+                fontSize: scale(16),
+                marginTop: scale(7),
+                fontWeight: "bold",
+              }}
+            >
+              Next{" >"}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 };
 
-
-
 export function LabClinic() {
- 
   const [searchQuery, setSearchQuery] = React.useState("");
   const [selectedServiceName, setSelectedServiceName] = React.useState(null);
   const [selectedServicePrice, setSelectedServicePrice] = React.useState(null);
@@ -241,7 +286,6 @@ export function LabClinic() {
           />
         </View>
       </View>
-      
     </SafeAreaView>
   );
 }
