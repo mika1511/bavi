@@ -86,7 +86,7 @@ export function AmbulanceScreen() {
 
         <TouchableOpacity
           onPress={() => {
-            Navigation.navigate("NBB");
+            Navigation.navigate("FDB");
           }}
           style={[styles.services_box1, styles.shadow]}
         >

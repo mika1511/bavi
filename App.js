@@ -29,6 +29,7 @@ import { MonitorScreen } from "./MonitorPara.js";
 import { MachineScreen } from "./Machines.js";
 import { BedScreen } from "./Beds.js";
 import { PaymentScreen } from "./PaymentPage.js";
+import { FDB } from "./Dead_Body.js";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -234,6 +235,13 @@ export default function App() {
             headerShown: false,
           }}
           component={PaymentScreen}
+        />
+        <Stack.Screen
+          name="FDB"
+          options={{
+            headerShown: false,
+          }}
+          component={FDB}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -31,7 +31,7 @@ const createContactOption = () =>
     { text: "Phone Call", onPress: () => Linking.openURL(`tel:$8871306576`) },
   ]);
 
-export function WithO2Support() {
+export function FDB() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
 
@@ -52,7 +52,7 @@ export function WithO2Support() {
         style={[
           styles.servicesContainer,
           {
-            marginTop: heightD * 0.07,
+            marginTop: heightD * 0.14,
           },
         ]}
       >
@@ -66,9 +66,9 @@ export function WithO2Support() {
             ]}
           >
             {" "}
-            With AC:{" "}
+            Charges:{" "}
           </Text>
-          <Text style={styles.servicesText}> Rs.18/km </Text>
+          <Text style={styles.servicesText}> Rs.30/km </Text>
           <Text
             style={[
               styles.servicesText,
@@ -160,156 +160,7 @@ export function WithO2Support() {
             </View>
             <TouchableOpacity
              onPress={() => {
-              const paymentObject = [{'id': 1, 'name': "Ambulance(With AC-02support)", 'price' : count*18}];
-              try {
-                AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
-                .then(() => {
-                  console.log("Data saved");
-                })
-                const f = AsyncStorage.getItem("current_service");
-                console.log(paymentObject);
-              
-                Navigation.navigate("paymentScreen");
-              } catch(error) {
-                console.log(error);
-              }
-            }}
-              style={{
-                marginTop: -scale(40.000232323232),
-                borderRadius: scale(20),
-                alignSelf: "flex-end",
-                marginRight: scale(10),
-                backgroundColor: "white",
-                height: scale(40),
-                width: "40%",
-              }}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  marginTop: scale(7),
-                  fontSize: scale(18),
-                  fontWeight: "bold",
-                  color: "#2aacac",
-                }}
-              >
-                {"NEXT >>"}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View
-          style={{
-            marginTop: heightD * 0.01,
-          }}
-        ></View>
-
-<View style={[styles.services_box1, styles.shadow]}>
-          <Text
-            style={[
-              styles.servicesText,
-              {
-                marginTop: scale(10),
-              },
-            ]}
-          >
-            {" "}
-            Without AC:{" "}
-          </Text>
-          <Text style={styles.servicesText}> Rs.16/km </Text>
-          <Text
-            style={[
-              styles.servicesText,
-              {
-                marginLeft: scale(8),
-                fontSize: scale(14),
-                marginTop: scale(5),
-                marginBottom: -scale(5),
-              },
-            ]}
-          >
-            Set your distance(in kms):
-          </Text>
-          <View
-            style={[
-              {
-                alignItems: "center",
-                display: "flex",
-                marginTop: scale(10),
-              },
-            ]}
-          >
-            <View
-              style={[
-                styles.buttonContainer,
-                {
-                  alignSelf: "flex-start",
-                  marginLeft: scale(10),
-                },
-              ]}
-            >
-              <TouchableOpacity
-                style={{
-                  marginTop: scale(5),
-                  height: scale(30),
-                  width: scale(30),
-                  borderRadius: scale(20),
-                  backgroundColor: "#2aacac",
-                }}
-                onPress={decrement}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    color: "white",
-                    textAlignVertical: "center",
-                    fontSize: scale(18),
-                  }}
-                >
-                  {"-"}
-                </Text>
-              </TouchableOpacity>
-              <TextInput
-                placeholder="0"
-                keyboardType="numeric"
-                maxLength={3}
-                value={count.toString()}
-                onChangeText={(value) =>
-                  setCount(value == 0 ? 0 : parseInt(value))
-                }
-                style={[
-                  styles.countText,
-                  {
-                    marginTop: scale(5),
-                  },
-                ]}
-              ></TextInput>
-              <TouchableOpacity
-                style={{
-                  marginTop: scale(5),
-                  height: scale(30),
-                  width: scale(30),
-                  borderRadius: scale(20),
-                  backgroundColor: "#2aacac",
-                }}
-                onPress={increment}
-              >
-                <Text
-                  style={{
-                    textAlign: "center",
-                    color: "white",
-                    textAlignVertical: "center",
-                    fontSize: scale(18),
-                  }}
-                >
-                  {"+"}
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <TouchableOpacity
-             onPress={() => {
-              const paymentObject = [{'id': 1, 'name': "Ambulance(NON AC-02 Support)", 'price' : count*16}];
+              const paymentObject = [{'id': 1, 'name': "Ambulance(FDB)", 'price' : count*30}];
               try {
                 AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
                 .then(() => {
@@ -400,7 +251,7 @@ export function WithO2Support() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(100),
+            marginTop: scale(240),
           },
         ]}
       >

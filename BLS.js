@@ -251,7 +251,7 @@ export function BLS() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(260),
+            marginTop: scale(240),
           },
         ]}
       >

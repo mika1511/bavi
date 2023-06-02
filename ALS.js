@@ -9,16 +9,20 @@ import HomeIconSvg from "./assets/home_icon.svg";
 import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
-
+import { useState } from "react";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
+//import RoundedButton from "./RoundedButton";
+import { TextInput } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
-      text: "cancel", status: "cancel" 
+      text: "cancel",
+      status: "cancel",
     },
     {
       text: "WhatsApp",
@@ -27,10 +31,21 @@ const createContactOption = () =>
     { text: "Phone Call", onPress: () => Linking.openURL(`tel:$8871306576`) },
   ]);
 
-
 export function ALS() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
+
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -41,7 +56,7 @@ export function ALS() {
           },
         ]}
       >
-        <TouchableOpacity style={[styles.services_box1, styles.shadow]}>
+        <View style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,
@@ -51,10 +66,138 @@ export function ALS() {
             ]}
           >
             {" "}
-            With Ventilator & Doctor:
+            With Ventilator & Doctor:{" "}
           </Text>
           <Text style={styles.servicesText}> Rs.32/km </Text>
-        </TouchableOpacity>
+          <Text
+            style={[
+              styles.servicesText,
+              {
+                marginLeft: scale(8),
+                fontSize: scale(14),
+                marginTop: scale(5),
+                marginBottom: -scale(5),
+              },
+            ]}
+          >
+            Set your distance(in kms):
+          </Text>
+          <View
+            style={[
+              {
+                alignItems: "center",
+                display: "flex",
+                marginTop: scale(10),
+              },
+            ]}
+          >
+            <View
+              style={[
+                styles.buttonContainer,
+                {
+                  alignSelf: "flex-start",
+                  marginLeft: scale(10),
+                },
+              ]}
+            >
+              <TouchableOpacity
+                style={{
+                  marginTop: scale(5),
+                  height: scale(30),
+                  width: scale(30),
+                  borderRadius: scale(20),
+                  backgroundColor: "#2aacac",
+                }}
+                onPress={decrement}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: "white",
+                    textAlignVertical: "center",
+                    fontSize: scale(18),
+                  }}
+                >
+                  {"-"}
+                </Text>
+              </TouchableOpacity>
+              <TextInput
+                placeholder="0"
+                keyboardType="numeric"
+                maxLength={3}
+                value={count.toString()}
+                onChangeText={(value) =>
+                  setCount(value == 0 ? 0 : parseInt(value))
+                }
+                style={[
+                  styles.countText,
+                  {
+                    marginTop: scale(5),
+                  },
+                ]}
+              ></TextInput>
+              <TouchableOpacity
+                style={{
+                  marginTop: scale(5),
+                  height: scale(30),
+                  width: scale(30),
+                  borderRadius: scale(20),
+                  backgroundColor: "#2aacac",
+                }}
+                onPress={increment}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: "white",
+                    textAlignVertical: "center",
+                    fontSize: scale(18),
+                  }}
+                >
+                  {"+"}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+             onPress={() => {
+              const paymentObject = [{'id': 1, 'name': "Ambulance(ALS)", 'price' : count*32}];
+              try {
+                AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
+                .then(() => {
+                  console.log("Data saved");
+                })
+                const f = AsyncStorage.getItem("current_service");
+                console.log(paymentObject);
+              
+                Navigation.navigate("paymentScreen");
+              } catch(error) {
+                console.log(error);
+              }
+            }}
+              style={{
+                marginTop: -scale(40.000232323232),
+                borderRadius: scale(20),
+                alignSelf: "flex-end",
+                marginRight: scale(10),
+                backgroundColor: "white",
+                height: scale(40),
+                width: "40%",
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  marginTop: scale(7),
+                  fontSize: scale(18),
+                  fontWeight: "bold",
+                  color: "#2aacac",
+                }}
+              >
+                {"NEXT >>"}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
         <View
           style={{
@@ -63,7 +206,13 @@ export function ALS() {
         ></View>
 
         <TouchableOpacity
-          style={[styles.services_box1, styles.shadow]}
+          style={[
+            styles.services_box1,
+            styles.shadow,
+            {
+              height: scale(100),
+            },
+          ]}
           onPress={() => {
             createContactOption();
           }}
@@ -102,7 +251,7 @@ export function ALS() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(300),
+            marginTop: scale(240),
           },
         ]}
       >
@@ -151,10 +300,10 @@ const styles = StyleSheet.create({
   },
   services_box1: {
     width: widthD * 0.9,
-    height: 100,
+    height: scale(155.5555555),
     backgroundColor: "#2AA8A0",
-    borderRadius: 18,
-    marginBottom: 30,
+    borderRadius: scale(18),
+    marginBottom: scale(30),
   },
   servicesText: {
     //textAlign: "center",
@@ -185,5 +334,30 @@ const styles = StyleSheet.create({
     shadowOpacity: 50,
     shadowRadius: scale(2),
     elevation: scale(11),
+  },
+  container1: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor:'white',
+    // width:'45%',
+    // height:scale(15),
+    // //alignSelf:'center',
+    // marginLeft: scale(20),
+    // borderRadius:scale(11),
+  },
+  countText: {
+    fontSize: scale(20),
+    marginBottom: scale(10),
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "white",
+    width: "45%",
+    height: scale(40),
+    borderRadius: scale(20),
+    //marginLeft: -scale(125),
+    color: "#2AACAC",
   },
 });
