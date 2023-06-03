@@ -305,8 +305,11 @@ export function SettingsPage({ navigation }) {
               marginTop: scale(10),
             }}
             onPress={() => {
-              navigation.navigate("Home");
-            }}
+              AsyncStorage.removeItem("PhoneNumber").then(() => {
+                navigation.navigate("Home");
+            });
+          }}
+            
           >
             <Text
               style={{

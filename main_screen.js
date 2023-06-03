@@ -6,6 +6,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, verticalScale } from "react-native-size-matters";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function MainScreen({ navigation }) {
   const Navigation = useNavigation();
@@ -60,7 +61,20 @@ export function MainScreen({ navigation }) {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("Login");
+              try {
+                AsyncStorage.getItem("PhoneNumber").then((value) => {
+                  if(value) {
+                    console.log(value);
+                    navigation.navigate("HomeScreen");
+                  }
+                  else {
+                    navigation.navigate("Login");
+                  }
+                });
+              }
+              catch(error) {
+                console.log(error);
+              }
             }}
           >
             <View
