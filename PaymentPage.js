@@ -48,26 +48,12 @@ const createContactOption = () => {
   );
 };
 
-const createAlertForService = () => {
-  Alert.alert(
-    "Invalid Information",
-    "Please select any type of service first",
-    [
-
-  optionS      {
-        text: "OK",
-        // onPress: () => Navigation.navigate("HomeScreen"),
-      },
-    ]
-  );
-};
-
 const createOrder = async (
   servicesName,
-
-      OrderType: optionS,e,
+  price,
   phoneNo,
   payMe,
+  optionS
 ) => {
   try {
     const firstName = await getFirstName(phoneNo);
@@ -78,7 +64,7 @@ const createOrder = async (
       PhoneNumber: phoneNo,
       Pending: true,
       PaymentOption: payMe,
-      
+      OrderType: optionS,
     });
     console.log(response.data);
   } catch (error) {
@@ -352,7 +338,7 @@ export function PaymentScreen() {
               {"\t\t\t\t\t\tGo To Lab"}
             </Text>
           </View>
-, selectedOseleselectedOption          <Text
+          <Text
             style={{
               fontWeight: "100",
               fontSize: scale(16),
@@ -363,16 +349,13 @@ export function PaymentScreen() {
           </Text>
           <TouchableOpacity
             onPress={() => {
-              if(selectedOption) {
               console.log(servicesString);
-              createOrder(servicesString, mTotal, mPhone, "Online");
+              createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
               Linking.openURL(
                 "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
                   (mTotal + 60)
-              ); } else {
-                createAlertForService();
-              }
-            }} 
+              );
+            }}
             style={[styles.services_box1, styles.shadow]}
           >
             <Text
@@ -389,7 +372,7 @@ export function PaymentScreen() {
 
             <PayIcon
               style={{
-, selectedOption                marginLeft: scale(20),
+                marginLeft: scale(20),
               }}
               height={scale(30)}
             ></PayIcon>
@@ -404,13 +387,10 @@ export function PaymentScreen() {
             onPress={() => {
               if(selectedOption) {
                 console.log(selectedOption);
-                createOrder(servicesString, mTotal, mPhone, "Cash");
+                createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
                 createContactOption();
                 Navigation.navigate("HomeScreen");
-              } else {
-                createAlertForService();
-              }
-            }}
+          }}}
             style={[styles.services_box1, styles.shadow]}
           >
             <Text

@@ -12,14 +12,16 @@ class Order(Base):
     PhoneNumber = Column(String(12))
     Pending = Column(BOOLEAN)
     PaymentOption = Column(String(200))
+    OrderType = Column(String(100))
 
-    def __init__(self, FirstName, ServiceName, TotalPrice, PhoneNumber, Pending, PaymentOption):
+    def __init__(self, FirstName, ServiceName, TotalPrice, PhoneNumber, Pending, PaymentOption, OrderType):
         self.FirstName = FirstName
         self.ServiceName = ServiceName
         self.TotalPrice= TotalPrice
         self.PhoneNumber= PhoneNumber
         self.Pending = Pending
         self.PaymentOption = PaymentOption
+        self.OrderType = OrderType
 
     def __repr__(self):
         return f"Buyer('{self.Name}', '{self.Quantity}', '{self.Dealer})"
