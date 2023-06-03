@@ -26,6 +26,7 @@ class Order(BaseModel):
     PhoneNumber: str
     Pending: bool
     PaymentOption: str
+    OrderType: str
 
 app = FastAPI()
 
@@ -147,14 +148,18 @@ async def register(phone_no, career, specialization):
         session.commit()
         return {"Success" : "true"}
     else:
-        return {"Success" : "fucked"}
+        return {"Success" : "false"}
 
 
 @app.post("/create_order")
 async def create(order: Order):
     try:
         # Add the new order to the database
-        session.add(models.Orders.Order(FirstName=order.FirstName, ServiceName=order.ServiceName, TotalPrice=order.TotalPrice, PhoneNumber=order.PhoneNumber, Pending=order.Pending, PaymentOption=order.PaymentOption))
+        session.add(models.Orders.Order(FirstName=order.FirstName, ServiceName=order.ServiceName, 
+            TotalPrice=order.TotalPrice, 
+            PhoneNumber=order.PhoneNumber, 
+            Pending=order.Pending, 
+            PaymentOption=order.PaymentOption, OrderType=order.OrderType))
         session.commit()
 
         # Fetch all the Order tables in descending order by ID

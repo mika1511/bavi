@@ -48,16 +48,30 @@ const createContactOption = () => {
   );
 };
 
-const createOrder = async (servicesName, price, phoneNo, payMe) => {
+const createAlertForService = () => {
+  Alert.alert(
+    "Invalid Information",
+    "Please select any type of service first",
+    [
+      {
+        text: "OK",
+        // onPress: () => Navigation.navigate("HomeScreen"),
+      },
+    ]
+  );
+};
+
+const createOrder = async (servicesName, price, phoneNo, payMe, orderS) => {
   try {
     const firstName = await getFirstName(phoneNo);
     const response = await axios.post(backendIP + "/create_order", {
       FirstName: firstName,
       ServiceName: servicesName,
-      TotalPrice: price+60,
+      TotalPrice: price + 60,
       PhoneNumber: phoneNo,
       Pending: true,
       PaymentOption: payMe,
+      OrderType: orderS,
     });
     console.log(response.data);
   } catch (error) {
@@ -111,14 +125,11 @@ export function PaymentScreenAmbulance() {
     });
   }, []);
 
-  
-    const [selectedOption, setSelectedOption] = useState(null);
-  
-    const handleOptionClick = (option) => {
-      setSelectedOption(option);
-      
-    };
-  
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
 
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
@@ -186,57 +197,77 @@ export function PaymentScreenAmbulance() {
             keyExtractor={(item) => item.id.toString()}
           />
 
-          <Text style={{
-            fontWeight: "100",
-            fontSize: scale(16),
-            color: "#323639",
-          }}>
+          <Text
+            style={{
+              fontWeight: "100",
+              fontSize: scale(16),
+              color: "#323639",
+            }}
+          >
             {"BILL SUMMARY\n"}
           </Text>
-          <View style={{
-            minWidth: "80%",
-            maxWidth: "80%",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            borderWidth: 2,
-            borderColor: "#2AACAC",
-            borderRadius: scale(15),
-            borderTopWidth: scale(4),
-            borderLeftWidth: scale(0),
-            borderBottomWidth: scale(4),
-            borderRightWidth: scale(0),
-            height: scale(115),
-            textAlignVertical: "center",
-          }}>
+          <View
+            style={{
+              minWidth: "80%",
+              maxWidth: "80%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              borderWidth: 2,
+              borderColor: "#2AACAC",
+              borderRadius: scale(15),
+              borderTopWidth: scale(4),
+              borderLeftWidth: scale(0),
+              borderBottomWidth: scale(4),
+              borderRightWidth: scale(0),
+              height: scale(115),
+              textAlignVertical: "center",
+            }}
+          >
             <Text
               style={{
                 fontWeight: "600",
                 fontSize: scale(20),
-                color: "#45484D"
+                color: "#45484D",
               }}
             >
               {" Subtotal Price:\n"}
-              <Text style={{
-                fontSize: scale(16)
-              }}> ⓘ Additional Charges:</Text>{"\n\n Grand Total:"}
+              <Text
+                style={{
+                  fontSize: scale(16),
+                }}
+              >
+                {" "}
+                ⓘ Additional Charges:
+              </Text>
+              {"\n\n Grand Total:"}
             </Text>
             <Text
               style={{
                 fontWeight: "600",
                 fontSize: scale(20),
-                color: "#595e6c"
+                color: "#595e6c",
               }}
             >
-              ₹{mTotal}{"\n"}<Text style={{
-                fontSize: scale(16)
-              }}>₹60</Text>{"\n\n₹"}{mTotal + 60}{' '}
+              ₹{mTotal}
+              {"\n"}
+              <Text
+                style={{
+                  fontSize: scale(16),
+                }}
+              >
+                ₹60
+              </Text>
+              {"\n\n₹"}
+              {mTotal + 60}{" "}
             </Text>
           </View>
-          <Text style={{
-            fontWeight: "100",
-            fontSize: scale(16),
-            color: "#323639",
-          }}>
+          <Text
+            style={{
+              fontWeight: "100",
+              fontSize: scale(16),
+              color: "#323639",
+            }}
+          >
             {" \n\nTYPE OF SERVICE"}
           </Text>
           <View
@@ -244,69 +275,89 @@ export function PaymentScreenAmbulance() {
               marginTop: scale(19.69),
             }}
           ></View>
-           <View style={[styles.optionsContainer,{
-             flexDirection:"column",
-             alignItems: "flex-start",
-           }]}>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            selectedOption === 'ONEWAY' && styles.selectedOption, {
-              height: scale(25),
-              width: scale(25),
-              marginTop: scale(10),
-            }
-          ]}
-          onPress={() => handleOptionClick('ONEWAY')}
-        ></TouchableOpacity>
-        
-        <Text style={{
-          marginTop: -scale(35),
-          fontSize: scale(16),
-          color: "#2aacac"
-        }}
-        onPress={() => handleOptionClick('ONEWAY')}>{"\t\t\t\t\t\tONE WAY"}</Text>
-       
+          <View
+            style={[
+              styles.optionsContainer,
+              {
+                flexDirection: "column",
+                alignItems: "flex-start",
+              },
+            ]}
+          >
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                selectedOption === "ONEWAY" && styles.selectedOption,
+                {
+                  height: scale(25),
+                  width: scale(25),
+                  marginTop: scale(10),
+                },
+              ]}
+              onPress={() => handleOptionClick("ONEWAY")}
+            ></TouchableOpacity>
 
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            selectedOption === 'TWOWAY' && styles.selectedOption,{
-              height: scale(25),
-              width: scale(25),
-              marginBottom: scale(5),
-            }
-          ]}
-          onPress={() => handleOptionClick('TWOWAY')}
-        >
-         
-        </TouchableOpacity > 
-        
+            <Text
+              style={{
+                marginTop: -scale(35),
+                fontSize: scale(16),
+                color: "#2aacac",
+              }}
+              onPress={() => handleOptionClick("ONEWAY")}
+            >
+              {"\t\t\t\t\t\tONE WAY"}
+            </Text>
 
-          <Text style={[,{
-          marginTop: -scale(40),
-          marginBottom:scale(15),
-          fontSize: scale(16),
-          color: "#2aacac"
-        }]}
-        onPress={() => handleOptionClick('TWOWAY')}>{"\t\t\t\t\t\tTWO WAY"}</Text>
-        </View> 
-        <Text style={{
-            fontWeight: "100",
-            fontSize: scale(16),
-            color: "#323639",
-          }}>
+            <TouchableOpacity
+              style={[
+                styles.optionButton,
+                selectedOption === "TWOWAY" && styles.selectedOption,
+                {
+                  height: scale(25),
+                  width: scale(25),
+                  marginBottom: scale(5),
+                },
+              ]}
+              onPress={() => handleOptionClick("TWOWAY")}
+            ></TouchableOpacity>
+
+            <Text
+              style={[
+                ,
+                {
+                  marginTop: -scale(40),
+                  marginBottom: scale(15),
+                  fontSize: scale(16),
+                  color: "#2aacac",
+                },
+              ]}
+              onPress={() => handleOptionClick("TWOWAY")}
+            >
+              {"\t\t\t\t\t\tTWO WAY"}
+            </Text>
+          </View>
+          <Text
+            style={{
+              fontWeight: "100",
+              fontSize: scale(16),
+              color: "#323639",
+            }}
+          >
             {" \nMODE OF PAYMENT\n"}
           </Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={() => {
-              console.log(servicesString);
-              createOrder(servicesString, mTotal, mPhone, "Online");
-              Linking.openURL(
-                "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
-                  (mTotal+60)
-              );
-              
+              if (selectedOption) {
+                console.log(selectedOption);
+                console.log(servicesString);
+                createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
+                Linking.openURL(
+                  "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                    (mTotal + 60)
+                );
+              } else {
+                createAlertForService();
+              }
             }}
             style={[styles.services_box1, styles.shadow]}
           >
@@ -337,9 +388,14 @@ export function PaymentScreenAmbulance() {
           ></View>
           <TouchableOpacity
             onPress={() => {
-              createOrder(servicesString, mTotal, mPhone, "Cash");
-              createContactOption();
-              Navigation.navigate("HomeScreen");
+              if (selectedOption) {
+                console.log(selectedOption);
+                createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
+                createContactOption();
+                Navigation.navigate("HomeScreen");
+              } else {
+                createAlertForService();
+              }
             }}
             style={[styles.services_box1, styles.shadow]}
           >
@@ -469,9 +525,9 @@ const styles = StyleSheet.create({
     // Additional styles for your container if needed
   },
   optionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
     marginBottom: 20,
     backgroundColor: "white",
@@ -490,13 +546,11 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: "black",
     // Additional styles for the option button if needed
   },
   selectedOption: {
-    backgroundColor: '#2aacac',
+    backgroundColor: "#2aacac",
     // Additional styles for the selected option if needed
   },
-  
-
 });

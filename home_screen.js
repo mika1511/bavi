@@ -64,7 +64,7 @@ export function HomeScreen() {
         </View> */}
         <View style={{
           width: scale(320),
-          height: scale(120),
+          height: scale(150),
           alignSelf: "center",
           backgroundColor: "#2AA8A0",
           borderRadius: scale(18),
@@ -86,7 +86,7 @@ export function HomeScreen() {
 
         <View
           style={{
-            marginTop: ratioedSize(scale(-130), scale(-140)),
+            marginTop: ratioedSize(scale(-130), scale(-160)),
             marginLeft: ratioedSize(scale(40), scale(30))
           }}
         >
@@ -143,7 +143,7 @@ export function HomeScreen() {
           ></SearchBar> */}
         </View> 
 
-        <View style={{
+        {/* <View style={{
           borderWidth: 2,
           borderRadius: scale(20),
           borderColor: "grey",
@@ -152,14 +152,14 @@ export function HomeScreen() {
           alignSelf:"center",
           marginTop: scale (10),
 
-        }}></View>
+        }}></View> */}
 
         
 
         <View
           style={{
             marginLeft: scale(20),
-            marginTop: scale(0),
+            marginTop: scale(50),
           }}
         >
           <Text
@@ -300,7 +300,7 @@ export function HomeScreen() {
            
         <View
           style={{
-            marginTop: scale(30),
+            marginTop: scale(70),
           }}
         >
           

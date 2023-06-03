@@ -53,7 +53,8 @@ const createAlertForService = () => {
     "Invalid Information",
     "Please select any type of service first",
     [
-      {
+
+  optionS      {
         text: "OK",
         // onPress: () => Navigation.navigate("HomeScreen"),
       },
@@ -63,7 +64,8 @@ const createAlertForService = () => {
 
 const createOrder = async (
   servicesName,
-  price,
+
+      OrderType: optionS,e,
   phoneNo,
   payMe,
 ) => {
@@ -350,7 +352,7 @@ export function PaymentScreen() {
               {"\t\t\t\t\t\tGo To Lab"}
             </Text>
           </View>
-          <Text
+, selectedOseleselectedOption          <Text
             style={{
               fontWeight: "100",
               fontSize: scale(16),
@@ -387,7 +389,7 @@ export function PaymentScreen() {
 
             <PayIcon
               style={{
-                marginLeft: scale(20),
+, selectedOption                marginLeft: scale(20),
               }}
               height={scale(30)}
             ></PayIcon>

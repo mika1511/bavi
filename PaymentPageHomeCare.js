@@ -48,7 +48,7 @@ const createContactOption = () => {
   );
 };
 
-const createOrder = async (servicesName, price, phoneNo, payMe) => {
+const createOrder = async (servicesName, price, phoneNo, payMe, orderS) => {
   try {
     const firstName = await getFirstName(phoneNo);
     const response = await axios.post(backendIP + "/create_order", {
@@ -58,6 +58,7 @@ const createOrder = async (servicesName, price, phoneNo, payMe) => {
       PhoneNumber: phoneNo,
       Pending: true,
       PaymentOption: payMe,
+      OrderType: orderS,
     });
     console.log(response.data);
   } catch (error) {
@@ -299,7 +300,7 @@ export function PaymentScreenHomeCare() {
           <TouchableOpacity 
             onPress={() => {
               console.log(servicesString);
-              createOrder(servicesString, mTotal, mPhone, "Online");
+              createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
               Linking.openURL(
                 "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
                   (mTotal+60)
@@ -335,7 +336,7 @@ export function PaymentScreenHomeCare() {
           ></View>
           <TouchableOpacity
             onPress={() => {
-              createOrder(servicesString, mTotal, mPhone, "Cash");
+              createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
               createContactOption();
               Navigation.navigate("HomeScreen");
             }}

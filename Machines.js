@@ -53,7 +53,7 @@ export function MachineScreen() {
             const f = AsyncStorage.getItem("current_service");
             console.log(paymentObject);
           
-            Navigation.navigate("paymentScreen");
+            Navigation.navigate("PaymentScreenHomeCare");
           } catch(error) {
             console.log(error);
           }
