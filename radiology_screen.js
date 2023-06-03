@@ -151,7 +151,7 @@ export const CustomSearchableDropdown = ({
               borderColor: "grey"
             }}
           >
-            Total Price: Rs{" "}
+            Total Price: Rs.{" "}
             {selectedServices.reduce(
               (total, service) => total + service.price,
               0
@@ -176,7 +176,9 @@ export const CustomSearchableDropdown = ({
                 const f = AsyncStorage.getItem("current_service");
                 console.log(selectedServices);
 
-                Navigation.navigate("paymentScreen");
+                if(selectedServices.length >=1 ) {
+                  Navigation.navigate("paymentScreen");
+                }
               } catch (error) {
                 console.log(error);
               }
@@ -264,6 +266,7 @@ export function Radiology() {
             marginTop: scale(13),
           }}
           onPress={() => {
+            
             Navigation.navigate("HomeScreen");
           }}
         />

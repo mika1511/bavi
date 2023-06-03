@@ -129,7 +129,7 @@ export const CustomSearchableDropdown = ({
                     color: "#444444",
                   }}
                 >
-                  Rs {service.price}
+                  Rs. {service.price} 
                 </Text>
               </View>
               <TouchableOpacity onPress={() => handleRemoveService(service.id)}>
@@ -151,7 +151,7 @@ export const CustomSearchableDropdown = ({
               borderColor: "grey"
             }}
           >
-            Total Price: Rs{" "}
+            Total Price: Rs.{" "} 
             {selectedServices.reduce(
               (total, service) => total + service.price,
               0
@@ -176,7 +176,9 @@ export const CustomSearchableDropdown = ({
                 const f = AsyncStorage.getItem("current_service");
                 console.log(selectedServices);
 
-                Navigation.navigate("paymentScreen");
+                if(selectedServices.length >= 1) {
+                  Navigation.navigate("paymentScreen");
+                }
               } catch (error) {
                 console.log(error);
               }

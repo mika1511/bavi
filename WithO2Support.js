@@ -171,21 +171,31 @@ export function WithO2Support() {
               </TouchableOpacity>
             </View>
             <TouchableOpacity
-             onPress={() => {
-              const paymentObject = [{'id': 1, 'name': "Ambulance(With AC-02support)", 'price' : count*18}];
-              try {
-                AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
-                .then(() => {
-                  console.log("Data saved");
-                })
-                const f = AsyncStorage.getItem("current_service");
-                console.log(paymentObject);
-              
-                Navigation.navigate("PaymentScreenAmbulance");
-              } catch(error) {
-                console.log(error);
-              }
-            }}
+              onPress={() => {
+                const paymentObject = [
+                  {
+                    id: 1,
+                    name: "Ambulance(With AC-02support)",
+                    price: count * 18,
+                  },
+                ];
+                try {
+                  AsyncStorage.setItem(
+                    "current_service",
+                    JSON.stringify(paymentObject)
+                  ).then(() => {
+                    console.log("Data saved");
+                  });
+                  const f = AsyncStorage.getItem("current_service");
+                  console.log(paymentObject);
+
+                  if(count > 0) {
+                    Navigation.navigate("PaymentScreenAmbulance");
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
               style={{
                 marginTop: -scale(40.000232323232),
                 borderRadius: scale(20),
@@ -217,7 +227,7 @@ export function WithO2Support() {
           }}
         ></View>
 
-<View style={[styles.services_box1, styles.shadow]}>
+        <View style={[styles.services_box1, styles.shadow]}>
           <Text
             style={[
               styles.servicesText,
@@ -288,7 +298,7 @@ export function WithO2Support() {
                 maxLength={3}
                 value={mcount.toString()}
                 onChangeText={(value) =>
-                  setCount(value == 0 ? 0 : parseInt(value))
+                  msetCount(value == 0 ? 0 : parseInt(value))
                 }
                 style={[
                   styles.countText,
@@ -320,21 +330,31 @@ export function WithO2Support() {
               </TouchableOpacity>
             </View>
             <TouchableOpacity
-             onPress={() => {
-              const paymentObject = [{'id': 1, 'name': "Ambulance(NON AC-02 Support)", 'price' : mcount*16}];
-              try {
-                AsyncStorage.setItem("current_service", JSON.stringify(paymentObject))
-                .then(() => {
-                  console.log("Data saved");
-                })
-                const f = AsyncStorage.getItem("current_service");
-                console.log(paymentObject);
-              
-                Navigation.navigate("PaymentScreenAmbulance");
-              } catch(error) {
-                console.log(error);
-              }
-            }}
+              onPress={() => {
+                const paymentObject = [
+                  {
+                    id: 1,
+                    name: "Ambulance(NON AC-02 Support)",
+                    price: mcount * 16,
+                  },
+                ];
+                try {
+                  AsyncStorage.setItem(
+                    "current_service",
+                    JSON.stringify(paymentObject)
+                  ).then(() => {
+                    console.log("Data saved");
+                  });
+                  const f = AsyncStorage.getItem("current_service");
+                  console.log(paymentObject);
+
+                  if(mcount > 0) {
+                    Navigation.navigate("PaymentScreenAmbulance");
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }}
               style={{
                 marginTop: -scale(40.000232323232),
                 borderRadius: scale(20),

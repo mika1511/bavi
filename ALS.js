@@ -168,8 +168,10 @@ export function ALS() {
                 })
                 const f = AsyncStorage.getItem("current_service");
                 console.log(paymentObject);
-              
-                Navigation.navigate("PaymentScreenAmbulance");
+                
+                if(count > 0) {
+                  Navigation.navigate("PaymentScreenAmbulance");
+                }
               } catch(error) {
                 console.log(error);
               }
