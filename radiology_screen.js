@@ -118,7 +118,7 @@ export const CustomSearchableDropdown = ({
                     color: "#444444",
                   }}
                 >
-                  {service.name}
+                  {service.id}. {service.name}
                 </Text>
 
                 <Text
@@ -132,7 +132,6 @@ export const CustomSearchableDropdown = ({
                   Rs {service.price}
                 </Text>
               </View>
-
               <TouchableOpacity onPress={() => handleRemoveService(service.id)}>
                 <Text
                   style={{
@@ -147,6 +146,9 @@ export const CustomSearchableDropdown = ({
           <Text
             style={{
               fontWeight: "bold",
+              fontSize: scale(16),
+              borderTopWidth: 1,
+              borderColor: "grey"
             }}
           >
             Total Price: Rs{" "}
