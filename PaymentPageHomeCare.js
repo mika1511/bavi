@@ -300,7 +300,7 @@ export function PaymentScreenHomeCare() {
           <TouchableOpacity 
             onPress={() => {
               console.log(servicesString);
-              createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
+              createOrder(servicesString, mTotal, mPhone, "Online", "N/A");
               Linking.openURL(
                 "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
                   (mTotal+60)
@@ -336,7 +336,7 @@ export function PaymentScreenHomeCare() {
           ></View>
           <TouchableOpacity
             onPress={() => {
-              createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
+              createOrder(servicesString, mTotal, mPhone, "Cash", "N/A");
               createContactOption();
               Navigation.navigate("HomeScreen");
             }}

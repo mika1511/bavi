@@ -48,13 +48,20 @@ const createContactOption = () => {
   );
 };
 
-const createOrder = async (
-  servicesName,
-  price,
-  phoneNo,
-  payMe,
-  optionS
-) => {
+const createAlertForService = () => {
+  Alert.alert(
+    "Invalid Information",
+    "Please select any type of service first",
+    [
+      {
+        text: "OK",
+        // onPress: () => Navigation.navigate("HomeScreen"),
+      },
+    ]
+  );
+};
+
+const createOrder = async (servicesName, price, phoneNo, payMe, optionS) => {
   try {
     const firstName = await getFirstName(phoneNo);
     const response = await axios.post(backendIP + "/create_order", {
@@ -313,7 +320,6 @@ export function PaymentScreen() {
                   height: scale(25),
                   width: scale(25),
                   marginBottom: scale(5),
-                  
                 },
               ]}
               onPress={() => {
@@ -349,12 +355,22 @@ export function PaymentScreen() {
           </Text>
           <TouchableOpacity
             onPress={() => {
-              console.log(servicesString);
-              createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
-              Linking.openURL(
-                "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
-                  (mTotal + 60)
-              );
+              if (selectedOption) {
+                console.log(servicesString);
+                createOrder(
+                  servicesString,
+                  mTotal,
+                  mPhone,
+                  "Online",
+                  selectedOption
+                );
+                Linking.openURL(
+                  "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                    (mTotal + 60)
+                );
+              } else {
+                createAlertForService();
+              }
             }}
             style={[styles.services_box1, styles.shadow]}
           >
@@ -385,12 +401,21 @@ export function PaymentScreen() {
           ></View>
           <TouchableOpacity
             onPress={() => {
-              if(selectedOption) {
+              if (selectedOption) {
                 console.log(selectedOption);
-                createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
+                createOrder(
+                  servicesString,
+                  mTotal,
+                  mPhone,
+                  "Cash",
+                  selectedOption
+                );
                 createContactOption();
                 Navigation.navigate("HomeScreen");
-          }}}
+              } else {
+                createAlertForService();
+              }
+            }}
             style={[styles.services_box1, styles.shadow]}
           >
             <Text
@@ -516,7 +541,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    
   },
   optionsContainer: {
     flexDirection: "row",
@@ -533,7 +557,6 @@ const styles = StyleSheet.create({
     shadowOpacity: scale(50),
     shadowRadius: scale(2),
     elevation: scale(11),
-    
   },
   optionButton: {
     width: scale(30),
@@ -541,10 +564,8 @@ const styles = StyleSheet.create({
     borderRadius: scale(15),
     borderWidth: scale(1),
     borderColor: "black",
-    
   },
   selectedOption: {
     backgroundColor: "#2aacac",
-    
   },
 });
