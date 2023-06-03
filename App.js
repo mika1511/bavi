@@ -30,6 +30,8 @@ import { MachineScreen } from "./Machines.js";
 import { BedScreen } from "./Beds.js";
 import { PaymentScreen } from "./PaymentPage.js";
 import { FDB } from "./Dead_Body.js";
+import { PaymentScreenAmbulance } from "./PaymentPageAmbulance.js";
+import { PaymentScreenHomeCare } from "./PaymentPageHomeCare.js";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -229,7 +231,7 @@ export default function App() {
           component={MachineScreen}
         />
 
-<Stack.Screen
+        <Stack.Screen
           name="paymentScreen"
           options={{
             headerShown: false,
@@ -242,6 +244,20 @@ export default function App() {
             headerShown: false,
           }}
           component={FDB}
+        />
+        <Stack.Screen
+          name="PaymentScreenAmbulance"
+          options={{
+            headerShown: false,
+          }}
+          component={PaymentScreenAmbulance}
+        />
+        <Stack.Screen
+          name="PaymentScreenHomeCare"
+          options={{
+            headerShown: false,
+          }}
+          component={PaymentScreenHomeCare}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -169,7 +169,7 @@ export function FDB() {
                 const f = AsyncStorage.getItem("current_service");
                 console.log(paymentObject);
               
-                Navigation.navigate("paymentScreen");
+                Navigation.navigate("PaymentScreenAmbulance");
               } catch(error) {
                 console.log(error);
               }
