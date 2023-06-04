@@ -13,7 +13,7 @@ class Order(Base):
     Pending = Column(BOOLEAN)
     PaymentOption = Column(String(200))
     OrderType = Column(String(100))
-    OrderTime = Column(DateTime(timezone=True), server_default=func.now())
+    OrderTime = Column(DateTime(timezone=True), server_default=text("(NOW() AT TIME ZONE 'UTC') AT TIME ZONE 'IST'"))
     
     def __init__(self, FirstName, ServiceName, TotalPrice, PhoneNumber, Pending, PaymentOption, OrderType):
         self.FirstName = FirstName
