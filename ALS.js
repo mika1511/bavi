@@ -86,7 +86,7 @@ export function ALS() {
               styles.servicesText,
               {
                 marginLeft: scale(8),
-                fontSize: scale(14),
+                fontSize: ratioedSize(scale(10),scale(14)),
                 marginTop: scale(5),
                 marginBottom: -scale(5),
               },
@@ -163,7 +163,7 @@ export function ALS() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: scale(18),
+                    fontSize: ratioedSize(scale(12),scale(18)),
                   }}
                 >
                   {"+"}
@@ -202,7 +202,7 @@ export function ALS() {
                 style={{
                   textAlign: "center",
                   marginTop: scale(7),
-                  fontSize: scale(18),
+                  fontSize: ratioedSize(scale(13),scale(18)),
                   fontWeight: "bold",
                   color: "#2aacac",
                 }}
@@ -265,7 +265,7 @@ export function ALS() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(240),
+            marginTop: ratioedSize(scale(180),scale(240)),
           },
         ]}
       >
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     // borderRadius:scale(11),
   },
   countText: {
-    fontSize: scale(20),
+    fontSize: ratioedSize(scale(12),scale(20)),
     marginBottom: scale(10),
   },
   buttonContainer: {

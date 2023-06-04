@@ -28,6 +28,18 @@ import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
 import axios from "axios";
 import { backendIP } from "./NetworkConfig";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 export const CustomSearchableDropdown = ({
   serviceData,
   onServiceSelected,
@@ -74,7 +86,7 @@ export const CustomSearchableDropdown = ({
         containerStyle={[styles.login_button, styles.shadow, {}]}
         textInputStyle={{
           marginTop: scale(250),
-          fontSize: scale(19),
+          fontSize: ratioedSize(scale(12),scale(19)),
           backgroundColor: "#2AACAC",
           borderRadius: scale(20),
           height: scale(50),
@@ -97,7 +109,7 @@ export const CustomSearchableDropdown = ({
 
       <View
         style={{
-          marginTop: scale(50),
+          marginTop: ratioedSize(scale(30),scale(50)),
           height: 400,
         }}
       >
@@ -146,7 +158,7 @@ export const CustomSearchableDropdown = ({
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: scale(16),
+              fontSize: ratioedSize(scale(12),scale(16)),
               borderTopWidth: 1,
               borderColor: "grey"
             }}
@@ -194,7 +206,7 @@ export const CustomSearchableDropdown = ({
               style={{
                 color: "white",
                 textAlign: "center",
-                fontSize: scale(16),
+                fontSize: ratioedSize(scale(11),scale(16)),
                 marginTop: scale(7),
                 fontWeight: "bold",
               }}
@@ -233,7 +245,7 @@ export function Radiology() {
       >
         <Text
           style={{
-            fontSize: 25,
+            fontSize: ratioedSize(scale(15),scale(25)),
             color: "grey",
           }}
         >

@@ -195,7 +195,7 @@ export function HomeScreen() {
                 fontSize: ratioedSize(scale(19), scale(25)),
                 color: "#2AA8A0",
                 textAlign: "center",
-                marginTop: scale(15),
+                marginTop: ratioedSize(scale(10),scale(15)),
               }}
             >
               Home Care
@@ -221,7 +221,7 @@ export function HomeScreen() {
                 fontSize: ratioedSize(scale(19), scale(25)),
                 color: "#2AA8A0",
                 textAlign: "center",
-                marginTop: scale(15),
+                marginTop: ratioedSize(scale(10),scale(15)),
               }}
             >
               Ambulance
@@ -247,7 +247,7 @@ export function HomeScreen() {
                 fontSize: ratioedSize(scale(19), scale(25)),
                 color: "#2AA8A0",
                 textAlign: "center",
-                marginTop: scale(15),
+                marginTop: ratioedSize(scale(10),scale(15)),
               }}
             >
               Diagnostic
@@ -284,13 +284,13 @@ export function HomeScreen() {
 
         <View
           style={{
-            marginTop: ratioedSize(scale(5), scale(15)),
+            marginTop: ratioedSize(scale(15), scale(15)),
             marginLeft: "80%",
           }}
         >
           <ChatImage
             color={"#2AA8A0"}
-            width={ratioedSize(scale(35),scale(50))}
+            width={ratioedSize(scale(50),scale(50))}
             height={scale(50)}
             onPress={() => {
               Linking.openURL("https://wa.me/918871306576");
@@ -300,7 +300,7 @@ export function HomeScreen() {
            
         <View
           style={{
-            marginTop: scale(70),
+            marginTop: ratioedSize(scale(40),scale(70)),
           }}
         >
           

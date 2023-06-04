@@ -75,7 +75,9 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Attender</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Attender</Text>
         </TouchableOpacity>
 
         <View
@@ -90,7 +92,7 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-        <Text style={[styles.servicesTextP,{
+        <Text style={[styles.servicesText,{
           fontSize: ratioedsize(scale(16),scale(26)),
         }]}>Physiotherapy</Text>
         </TouchableOpacity>
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    marginTop: 35,
+    marginTop: ratioedsize(scale(25),scale(35)),
     
     fontWeight: "bold",
     color: "#FFFFFF",

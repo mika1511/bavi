@@ -98,7 +98,7 @@ export function WithO2Support() {
               styles.servicesText,
               {
                 marginLeft: scale(8),
-                fontSize: scale(14),
+                fontSize: ratioedSize(scale(10),scale(14)),
                 marginTop: scale(5),
                 marginBottom: -scale(5),
               },
@@ -139,7 +139,7 @@ export function WithO2Support() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: scale(18),
+                    fontSize: ratioedSize(scale(12),scale(18)),
                   }}
                 >
                   {"-"}
@@ -175,7 +175,7 @@ export function WithO2Support() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: scale(18),
+                    fontSize: ratioedSize(scale(12),scale(18)),
                   }}
                 >
                   {"+"}
@@ -222,7 +222,7 @@ export function WithO2Support() {
                 style={{
                   textAlign: "center",
                   marginTop: scale(7),
-                  fontSize: scale(18),
+                  fontSize: ratioedSize(scale(13),scale(18)),
                   fontWeight: "bold",
                   color: "#2aacac",
                 }}
@@ -257,7 +257,7 @@ export function WithO2Support() {
               styles.servicesText,
               {
                 marginLeft: scale(8),
-                fontSize: scale(14),
+                fontSize: ratioedSize(scale(10),scale(14)),
                 marginTop: scale(5),
                 marginBottom: -scale(5),
               },
@@ -298,7 +298,7 @@ export function WithO2Support() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: scale(18),
+                    fontSize: ratioedSize(scale(12),scale(18)),
                   }}
                 >
                   {"-"}
@@ -334,7 +334,7 @@ export function WithO2Support() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: scale(18),
+                    fontSize: ratioedSize(scale(12),scale(18)),
                   }}
                 >
                   {"+"}
@@ -381,7 +381,7 @@ export function WithO2Support() {
                 style={{
                   textAlign: "center",
                   marginTop: scale(7),
-                  fontSize: scale(18),
+                  fontSize: ratioedSize(scale(13),scale(18)),
                   fontWeight: "bold",
                   color: "#2aacac",
                 }}
@@ -403,7 +403,7 @@ export function WithO2Support() {
             styles.services_box1,
             styles.shadow,
             {
-              height: scale(100),
+              height: ratioedSize(scale(90),scale(100)),
             },
           ]}
           onPress={() => {
@@ -444,7 +444,7 @@ export function WithO2Support() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(100),
+            marginTop: ratioedSize(scale(50),scale(100)),
           },
         ]}
       >
