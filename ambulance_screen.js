@@ -11,6 +11,19 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 import { Linking } from "react-native";
 export function AmbulanceScreen() {
   const Tab = createBottomTabNavigator();
@@ -31,7 +44,9 @@ export function AmbulanceScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>With O2 Support</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>With O2 Support</Text>
         </TouchableOpacity>
 
         <View
@@ -46,7 +61,9 @@ export function AmbulanceScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Basic Life Support</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>Basic Life Support</Text>
         </TouchableOpacity>
 
         <View
@@ -61,7 +78,9 @@ export function AmbulanceScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Advanced Life Support</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>Advanced Life Support</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -75,7 +94,9 @@ export function AmbulanceScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>New Born Baby</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>New Born Baby</Text>
         </TouchableOpacity>
 
         <View
@@ -90,7 +111,10 @@ export function AmbulanceScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Freezer For Dead Body</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedSize(scale(16),scale(26)),
+
+          }]}>Freezer For Dead Body</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -157,7 +181,6 @@ const styles = StyleSheet.create({
   servicesText: {
     textAlign: "center",
     marginTop: 35,
-    fontSize: 26,
     fontWeight: "bold",
     color: "#FFFFFF",
   },

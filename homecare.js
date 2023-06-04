@@ -10,6 +10,18 @@ import { useNavigation } from "@react-navigation/native";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedsize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 export function HomecareScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
@@ -29,7 +41,9 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Doctor</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Doctor</Text>
         </TouchableOpacity>
 
         <View
@@ -44,7 +58,9 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Nurse</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Nurse</Text>
         </TouchableOpacity>
 
         <View
@@ -74,7 +90,9 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Physiotherapy</Text>
+        <Text style={[styles.servicesTextP,{
+          fontSize: ratioedsize(scale(16),scale(26)),
+        }]}>Physiotherapy</Text>
         </TouchableOpacity>
 
         <View
@@ -89,7 +107,9 @@ export function HomecareScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Diet Food</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Diet Food</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -154,7 +174,7 @@ const styles = StyleSheet.create({
   servicesText: {
     textAlign: "center",
     marginTop: 35,
-    fontSize: 26,
+    
     fontWeight: "bold",
     color: "#FFFFFF",
   },

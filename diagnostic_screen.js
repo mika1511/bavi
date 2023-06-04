@@ -10,6 +10,18 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedsize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 
 export function DiagnosticScreen() {
   const Tab = createBottomTabNavigator();
@@ -31,7 +43,9 @@ export function DiagnosticScreen() {
             Navigation.navigate("lab_clinic");
           }}
         >
-          <Text style={styles.servicesText}>Laboratory</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Laboratory</Text>
         </TouchableOpacity>
 
         <View
@@ -46,7 +60,9 @@ export function DiagnosticScreen() {
             Navigation.navigate("radiology");
           }}
         >
-          <Text style={styles.servicesText}>Radiology</Text>
+          <Text style={[styles.servicesText,{
+                fontSize: ratioedsize(scale(16),scale(26)),
+          }]}>Radiology</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -111,7 +127,6 @@ const styles = StyleSheet.create({
   servicesText: {
     textAlign: "center",
     marginTop: 40,
-    fontSize: 26,
     fontWeight: "bold",
     color: "#FFFFFF",
   },

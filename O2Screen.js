@@ -15,6 +15,18 @@ const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
@@ -126,7 +138,7 @@ export function O2Screen() {
             paddingTop: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            fontSize: 20,
+            fontSize: ratioedSize(scale(12),scale(20)),
             fontWeight: "bold",
             width: "70%",
           }}
@@ -135,7 +147,7 @@ export function O2Screen() {
         </Text>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: ratioedSize(scale(10),scale(18)),
             //textAlign: "center",
             paddingBottom: scale(10),
             paddingLeft: scale(10),
@@ -210,7 +222,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: 26,
+    fontSize: ratioedSize(scale(16),scale(26)),
     fontWeight: "bold",
     color: "#FFFFFF",
   },

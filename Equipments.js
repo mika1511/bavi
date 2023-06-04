@@ -11,6 +11,19 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 import { Linking } from "react-native";
 
 export function EquipmentsScreen() {
@@ -32,7 +45,9 @@ export function EquipmentsScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>O2 Cylinder</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>O2 Cylinder</Text>
         </TouchableOpacity>
 
         <View
@@ -47,7 +62,9 @@ export function EquipmentsScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Bed</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>Bed</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -61,7 +78,9 @@ export function EquipmentsScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>Monitor 5-para</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>Monitor 5-para</Text>
         </TouchableOpacity>
 
         <View
@@ -76,7 +95,9 @@ export function EquipmentsScreen() {
           }}
           style={[styles.services_box1, styles.shadow]}
         >
-          <Text style={styles.servicesText}>BIPAP/C-PAP Machine</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}>BIPAP/C-PAP Machine</Text>
         </TouchableOpacity>
       </View>
       <View
@@ -143,7 +164,7 @@ const styles = StyleSheet.create({
   servicesText: {
     textAlign: "center",
     marginTop: 45,
-    fontSize: 26,
+    
     fontWeight: "bold",
     color: "#FFFFFF",
   },

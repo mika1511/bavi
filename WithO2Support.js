@@ -18,6 +18,18 @@ import { Alert } from "react-native";
 import { TextInput } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
@@ -489,7 +501,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: 26,
+    fontSize: ratioedSize(scale(16),scale(26)),
     fontWeight: "bold",
     color: "#FFFFFF",
   },
@@ -528,7 +540,7 @@ const styles = StyleSheet.create({
     // borderRadius:scale(11),
   },
   countText: {
-    fontSize: scale(20),
+    fontSize: ratioedSize(scale(12),scale(20)),
     marginBottom: scale(10),
   },
   buttonContainer: {

@@ -16,6 +16,18 @@ const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const createContactOption = () =>
   Alert.alert("Open With ", "Choose an Option", [
     {
@@ -176,7 +188,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: 26,
+    fontSize: ratioedSize(scale(16),scale(26)),
     fontWeight: "bold",
     color: "#FFFFFF",
   },

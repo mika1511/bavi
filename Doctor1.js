@@ -13,6 +13,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
 
 
 const createContactOption = () =>
@@ -63,13 +74,16 @@ export function Doctor1() {
               styles.servicesText,
               {
                 marginTop: scale(10),
+                fontSize: ratioedSize(scale(16),scale(26)),
               },
             ]}
           >
             {" "}
             Doctor charges:
           </Text>
-          <Text style={styles.servicesText}> Rs. 750 /-</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}> Rs. 750 /-</Text>
         </TouchableOpacity>
 
         <View
@@ -100,12 +114,15 @@ export function Doctor1() {
               {
                 marginTop: scale(-42),
                 textAlign: "left",
+                fontSize: ratioedSize(scale(16),scale(26)),
               },
             ]}
           >
             {"\t     "}Contact Us:{" "}
           </Text>
-          <Text style={styles.servicesText}> +91-8871306576</Text>
+          <Text style={[styles.servicesText,{
+            fontSize: ratioedSize(scale(16),scale(26)),
+          }]}> +91-8871306576</Text>
         </TouchableOpacity>
 
         <View
@@ -176,7 +193,7 @@ const styles = StyleSheet.create({
   servicesText: {
     // textAlign: "center",
     // marginTop: 35,
-    fontSize: 26,
+    
     fontWeight: "bold",
     color: "#FFFFFF",
   },
