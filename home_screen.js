@@ -86,7 +86,7 @@ export function HomeScreen() {
 
         <View
           style={{
-            marginTop: ratioedSize(scale(-130), scale(-160)),
+            marginTop: ratioedSize(scale(-150), scale(-160)),
             marginLeft: ratioedSize(scale(40), scale(30))
           }}
         >
@@ -210,7 +210,7 @@ export function HomeScreen() {
               styles.services_box,
               styles.shadow,
               {
-                marginTop: ratioedSize(scale(69), scale(93.55)),
+                marginTop: ratioedSize(scale(80), scale(93.55)),
                 position: "relative",
               },
             ]}
