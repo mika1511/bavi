@@ -7,6 +7,7 @@ import HomeIconSvg from "./assets/home_icon.svg";
 import PersonIcon from "./assets/personicon.svg";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-virtualized-view";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
@@ -28,7 +29,7 @@ export function DiagnosticScreen() {
   const Navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -64,13 +65,13 @@ export function DiagnosticScreen() {
                 fontSize: ratioedsize(scale(16),scale(26)),
           }]}>Radiology</Text>
         </TouchableOpacity>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(200),
+            //marginTop: scale(200),
           },
         ]}
       >
@@ -139,7 +140,8 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    //marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

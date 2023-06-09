@@ -25,12 +25,13 @@ function ratioedSize(size1, size2) {
 }
 
 import { Linking } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
 
 export function EquipmentsScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -99,15 +100,15 @@ export function EquipmentsScreen() {
             fontSize: ratioedSize(scale(16),scale(26)),
           }]}>BIPAP/C-PAP Machine</Text>
         </TouchableOpacity>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(55),
+            //marginTop: scale(55),
             //flex:1,
-            bottom: 0,
+            
           },
         ]}
       >
@@ -177,7 +178,8 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    //marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

@@ -52,9 +52,10 @@ export function HomeScreen() {
         style={{
           maxWidth: "100%",
           maxHeight: "100%",
-          flex: 1,
+          flex:1,
+          display: "flex"
         }}
-      >
+      ><ScrollView>
         {/* <View
           style={{
             alignSelf: "center",
@@ -296,15 +297,15 @@ export function HomeScreen() {
               Linking.openURL("https://wa.me/918871306576");
             }}
           ></ChatImage>
-        </View>
+        </View></ScrollView>
            
         <View
           style={{
-            marginTop: ratioedSize(scale(40),scale(70)),
+            //marginTop: ratioedSize(scale(40),scale(70)),
           }}
         >
           
-          <View style={styles.downNavigator}>
+          <View style={[styles.downNavigator, styles.shadow]}>
             <HomeIconSvg
               style={{
                 marginLeft: "17.5%",
@@ -369,12 +370,14 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "absolute",
-    marginTop: scale(-15),
+    //marginTop: scale(-15),
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",
     backgroundColor: "#FFFFFF",
     borderRadius: moderateScale(30),
+    justifyContent: 'space-between',
+    bottom: 5, 
   },
   shadow: {
     shadowOffset: { width: scale(4), height: verticalScale(4) },

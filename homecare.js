@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native-virtualized-view";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
@@ -26,7 +27,7 @@ export function HomecareScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -113,13 +114,13 @@ export function HomecareScreen() {
             fontSize: ratioedsize(scale(16),scale(26)),
           }]}>Diet Food</Text>
         </TouchableOpacity>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(10),
+            //marginTop: scale(10),
           },
         ]}
       >
@@ -189,7 +190,8 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    //marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

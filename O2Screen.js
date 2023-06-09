@@ -14,6 +14,7 @@ const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
 
 const screenWidth = Dimensions.get("window").width;
  

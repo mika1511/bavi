@@ -10,6 +10,7 @@ import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-virtualized-view";
 
 
 const heightD = Dimensions.get("window").height;
@@ -47,7 +48,7 @@ export function Dietfood1() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -127,15 +128,9 @@ export function Dietfood1() {
             marginTop: heightD * 0.01,
           }}
         ></View>
-      </View>
+      </View></ScrollView>
       <View
-        style={[
-          styles.downNavigator,
-          styles.shadows,
-          {
-            marginTop: scale(300),
-          },
-        ]}
+        style={[styles.downNavigator,styles.shadows]}
       >
         <HomeIconSvg
           style={{
@@ -203,7 +198,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

@@ -386,8 +386,8 @@ export function PaymentScreenHomeCare() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: -scale(50),
-            marginBottom: scale(10),
+            //marginTop: -scale(50),
+            //marginBottom: scale(10),
           },
         ]}
       >
@@ -461,7 +461,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

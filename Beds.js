@@ -14,6 +14,7 @@ const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
 
 const screenWidth = Dimensions.get("window").width;
  
@@ -46,7 +47,7 @@ export function BedScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -162,13 +163,13 @@ export function BedScreen() {
             marginTop: heightD * 0.01,
           }}
         ></View>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(270),
+            //marginTop: scale(270),
           },
         ]}
       >
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

@@ -10,6 +10,7 @@ import PersonIcon from "./assets/personicon.svg";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import TelephoneIcon from "./assets/telephoneIcon.svg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-virtualized-view";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
@@ -47,7 +48,7 @@ export function MachineScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -163,13 +164,13 @@ export function MachineScreen() {
             marginTop: heightD * 0.01,
           }}
         ></View>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(270),
+            //marginTop: scale(270),
           },
         ]}
       >
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

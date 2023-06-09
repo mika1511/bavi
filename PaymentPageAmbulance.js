@@ -22,13 +22,11 @@ import { useFonts } from "expo-font";
 import { useState } from "react";
 
 const screenWidth = Dimensions.get("window").width;
- 
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
     return size1;
-  }
-  else {
+  } else {
     return size2;
   }
 }
@@ -104,6 +102,7 @@ export function PaymentScreenAmbulance() {
   const price_array = [];
   const [servicesString, setServicesString] = React.useState(null);
   const [mTotal, setTotal] = React.useState(0);
+  const [originalTotal, setoriginalTotal] = React.useState(0);
   const [mPhone, setPhone] = React.useState(null);
   const [mSection, setSection] = React.useState([]);
 
@@ -118,6 +117,7 @@ export function PaymentScreenAmbulance() {
       }
       console.log(total_price);
       setTotal(total_price);
+      setoriginalTotal(total_price);
       setServicesString(services.toString());
       AsyncStorage.getItem("PhoneNumber").then((value) => {
         setPhone(value);
@@ -137,6 +137,7 @@ export function PaymentScreenAmbulance() {
     });
   }, []);
 
+  const [isTwoWay, setIsTwoWay] = useState(false)
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionClick = (option) => {
@@ -162,7 +163,7 @@ export function PaymentScreenAmbulance() {
               style={{
                 marginRight: scale(140),
                 marginBottom: scale(10),
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: ratioedSize(scale(12), scale(18)),
                 fontWeight: "bold",
               }}
             >
@@ -238,7 +239,7 @@ export function PaymentScreenAmbulance() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(12),scale(20)),
+                fontSize: ratioedSize(scale(12), scale(20)),
                 color: "#45484D",
               }}
             >
@@ -256,7 +257,7 @@ export function PaymentScreenAmbulance() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(12),scale(20)),
+                fontSize: ratioedSize(scale(12), scale(20)),
                 color: "#595e6c",
               }}
             >
@@ -264,7 +265,7 @@ export function PaymentScreenAmbulance() {
               {"\n"}
               <Text
                 style={{
-                  fontSize: ratioedSize(scale(10),scale(16)),
+                  fontSize: ratioedSize(scale(10), scale(16)),
                 }}
               >
                 ₹60
@@ -276,7 +277,7 @@ export function PaymentScreenAmbulance() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: ratioedSize(scale(10),scale(16)),
+              fontSize: ratioedSize(scale(10), scale(16)),
               color: "#323639",
             }}
           >
@@ -306,16 +307,28 @@ export function PaymentScreenAmbulance() {
                   marginTop: scale(10),
                 },
               ]}
-              onPress={() => handleOptionClick("ONEWAY")}
+              onPress={() => {
+                handleOptionClick("ONEWAY")
+                if(isTwoWay) {
+                setTotal(originalTotal);
+                setIsTwoWay(false);
+              };
+              }}
             ></TouchableOpacity>
 
             <Text
               style={{
                 marginTop: -scale(35),
-                fontSize: ratioedSize(scale(10),scale(16)),
+                fontSize: ratioedSize(scale(10), scale(16)),
                 color: "#2aacac",
               }}
-              onPress={() => handleOptionClick("ONEWAY")}
+              onPress={() => {
+                handleOptionClick("ONEWAY")
+                  if(isTwoWay) {
+                  setTotal(originalTotal);
+                  setIsTwoWay(false);
+                };
+              }}
             >
               {"\t\t\t\t\t\tONE WAY"}
             </Text>
@@ -330,7 +343,13 @@ export function PaymentScreenAmbulance() {
                   marginBottom: scale(5),
                 },
               ]}
-              onPress={() => handleOptionClick("TWOWAY")}
+              onPress={() => {
+                handleOptionClick("TWOWAY");
+                if (!isTwoWay) {
+                  setTotal(mTotal * 2);
+                  setIsTwoWay(true);
+                }
+              }}
             ></TouchableOpacity>
 
             <Text
@@ -339,11 +358,17 @@ export function PaymentScreenAmbulance() {
                 {
                   marginTop: -scale(40),
                   marginBottom: scale(15),
-                  fontSize: ratioedSize(scale(10),scale(16)),
+                  fontSize: ratioedSize(scale(10), scale(16)),
                   color: "#2aacac",
                 },
               ]}
-              onPress={() => handleOptionClick("TWOWAY")}
+              onPress={() => {
+                handleOptionClick("TWOWAY");
+                if (!isTwoWay) {
+                  setTotal(mTotal * 2);
+                  setIsTwoWay(true);
+                }
+              }}
             >
               {"\t\t\t\t\t\tTWO WAY"}
             </Text>
@@ -351,7 +376,7 @@ export function PaymentScreenAmbulance() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: ratioedSize(scale(10),scale(16)),
+              fontSize: ratioedSize(scale(10), scale(16)),
               color: "#323639",
             }}
           >
@@ -360,13 +385,37 @@ export function PaymentScreenAmbulance() {
           <TouchableOpacity
             onPress={() => {
               if (selectedOption) {
-                console.log(selectedOption);
-                console.log(servicesString);
-                createOrder(servicesString, mTotal, mPhone, "Online", selectedOption);
-                Linking.openURL(
-                  "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
-                    (mTotal + 60)
-                );
+                if (selectedOption === "TWOWAY") {
+                  console.log(selectedOption);
+                  console.log(servicesString);
+                  createOrder(
+                    servicesString,
+                    mTotal,
+                    mPhone,
+                    "Online",
+                    selectedOption
+                  );
+
+                  Linking.openURL(
+                    "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                      (mTotal + 60)
+                  );
+                } else {
+                  console.log(selectedOption);
+                  console.log(servicesString);
+                  createOrder(
+                    servicesString,
+                    mTotal,
+                    mPhone,
+                    "Online",
+                    selectedOption
+                  );
+
+                  Linking.openURL(
+                    "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                      (mTotal + 60)
+                  );
+                }
               } else {
                 createAlertForService();
               }
@@ -401,10 +450,29 @@ export function PaymentScreenAmbulance() {
           <TouchableOpacity
             onPress={() => {
               if (selectedOption) {
-                console.log(selectedOption);
-                createOrder(servicesString, mTotal, mPhone, "Cash", selectedOption);
-                createContactOption();
-                Navigation.navigate("HomeScreen");
+                if (selectedOption === "TWOWAY") {
+                  console.log(selectedOption);
+                  createOrder(
+                    servicesString,
+                    mTotal,
+                    mPhone,
+                    "Cash",
+                    selectedOption
+                  );
+                  createContactOption();
+                  Navigation.navigate("HomeScreen");
+                } else {
+                  console.log(selectedOption);
+                  createOrder(
+                    servicesString,
+                    mTotal,
+                    mPhone,
+                    "Cash",
+                    selectedOption
+                  );
+                  createContactOption();
+                  Navigation.navigate("HomeScreen");
+                }
               } else {
                 createAlertForService();
               }
@@ -443,8 +511,8 @@ export function PaymentScreenAmbulance() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: -scale(50),
-            marginBottom: scale(10),
+            //marginTop: -scale(50),
+            //marginBottom: scale(10),
           },
         ]}
       >
@@ -505,7 +573,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    fontSize: ratioedSize(scale(16),scale(26)),
+    fontSize: ratioedSize(scale(16), scale(26)),
     fontWeight: "bold",
     color: "#2aacac",
   },
@@ -518,7 +586,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",

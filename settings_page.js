@@ -131,12 +131,19 @@ export function SettingsPage({ navigation }) {
         style={[
           styles.innerContainer,
           {
-            marginTop: -scale(80),
+            marginTop: ratioedSize(scale(-20),scale(-80)),
           },
         ]}
       >
-        <View style={styles.iconContainer}>
-          <PersonIcon />
+        <View style={[styles.iconContainer,{
+          marginTop: ratioedSize(scale(-50),scale(0)),
+        }]}>
+        <PersonIcon 
+       
+             height={ratioedSize(scale(80),scale(100))}
+             width={ratioedSize(scale(80),scale(100))}
+          
+        />
         </View>
 
         <View style={[styles.titleContainer]}>
@@ -154,7 +161,7 @@ export function SettingsPage({ navigation }) {
 
         <View
           style={{
-            marginTop: scale(-20),
+            marginTop: ratioedSize(scale(-30),scale(-20)),
           }}
         ></View>
 
@@ -264,7 +271,7 @@ export function SettingsPage({ navigation }) {
         <View>
           <TouchableOpacity
             style={{
-              marginTop: scale(30),
+              marginTop: ratioedSize(scale(10),scale(30)),
             }}
             onPress={() => {
               navigation.navigate("careerOption");
@@ -283,7 +290,7 @@ export function SettingsPage({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              marginTop: scale(10),
+              marginTop: ratioedSize(scale(3),scale(10)),
             }}
             onPress={() => {
               navigation.navigate("editProfile");
@@ -302,7 +309,7 @@ export function SettingsPage({ navigation }) {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              marginTop: scale(10),
+              marginTop: ratioedSize(scale(3),scale(10)),
             }}
             onPress={() => {
               AsyncStorage.removeItem("PhoneNumber").then(() => {
@@ -331,6 +338,7 @@ export function SettingsPage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     backgroundColor: "#fff",
   },
   absoluteContainer: {
@@ -347,13 +355,14 @@ const styles = StyleSheet.create({
   iconContainer: {
     alignItems: "center",
     marginBottom: "5%",
+    
   },
   titleContainer: {
     alignItems: "center",
     marginBottom: "10%",
   },
   title: {
-    fontSize: ratioedSize(scale(19), scale(25)),
+    fontSize: ratioedSize(scale(16), scale(25)),
     fontWeight: "400",
   },
   input_button: {

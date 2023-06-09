@@ -25,6 +25,7 @@ import axios from "axios";
 import { Alert } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import { backendIP } from "./NetworkConfig";
+import { Dimensions } from "react-native";
 const Options = ["Doctor", "Nurse", "Attender"];
 
 const screenWidth = Dimensions.get("window").width;

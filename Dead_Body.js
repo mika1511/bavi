@@ -17,6 +17,7 @@ import { Alert } from "react-native";
 //import RoundedButton from "./RoundedButton";
 import { TextInput } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ScrollView } from "react-native-virtualized-view";
 
 const screenWidth = Dimensions.get("window").width;
  
@@ -59,7 +60,7 @@ export function FDB() {
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container}><ScrollView showsVerticalScrollIndicator={false}>
       <View
         style={[
           styles.servicesContainer,
@@ -259,13 +260,13 @@ export function FDB() {
             marginTop: heightD * 0.01,
           }}
         ></View>
-      </View>
+      </View></ScrollView>
       <View
         style={[
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: ratioedSize(scale(180),scale(240)),
+            //marginTop: ratioedSize(scale(180),scale(240)),
           },
         ]}
       >
@@ -335,7 +336,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    marginTop: scale(555),
+    bottom:5,
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",
