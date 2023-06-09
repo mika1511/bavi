@@ -21,6 +21,18 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useFonts } from "expo-font";
 import { useState } from "react";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const getFirstName = async (phoneNo) => {
   try {
     const response = await axios.get(
@@ -140,7 +152,7 @@ export function PaymentScreenHomeCare() {
               style={{
                 marginRight: scale(140),
                 marginBottom: scale(10),
-                fontSize: scale(18),
+                fontSize: ratioedSize(scale(12),scale(18)),
                 fontWeight: "bold",
               }}
             >
@@ -189,7 +201,7 @@ export function PaymentScreenHomeCare() {
 
           <Text style={{
             fontWeight: "100",
-            fontSize: scale(16),
+            fontSize: ratioedSize(scale(10),scale(16)),
             color: "#323639",
           }}>
             {"BILL SUMMARY\n"}
@@ -218,18 +230,18 @@ export function PaymentScreenHomeCare() {
             >
               {" Subtotal Price:\n"}
               <Text style={{
-                fontSize: scale(16)
+                fontSize: ratioedSize(scale(10),scale(16)),
               }}> ⓘ Additional Charges:</Text>{"\n\n Grand Total:"}
             </Text>
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: scale(20),
+                fontSize: ratioedSize(scale(12),scale(20)),
                 color: "#595e6c"
               }}
             >
               ₹{mTotal}{"\n"}<Text style={{
-                fontSize: scale(16)
+                fontSize: ratioedSize(scale(10),scale(16)),
               }}>₹60</Text>{"\n\n₹"}{mTotal + 60}{' '}
             </Text>
           </View>
@@ -292,7 +304,7 @@ export function PaymentScreenHomeCare() {
         </View>  */}
         <Text style={{
             fontWeight: "100",
-            fontSize: scale(16),
+            fontSize: ratioedSize(scale(10),scale(16)),
             color: "#323639",
           }}>
             {" \nMODE OF PAYMENT\n"}
@@ -436,7 +448,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    fontSize: 26,
+    fontSize: ratioedSize(scale(16),scale(26)),
     fontWeight: "bold",
     color: "#2aacac",
   },

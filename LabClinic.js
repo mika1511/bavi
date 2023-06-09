@@ -86,7 +86,7 @@ export const CustomSearchableDropdown = ({
         onItemSelect={(item) => handleServiceSelection(item)}
         containerStyle={[styles.login_button, styles.shadow, {}]}
         textInputStyle={{
-          marginTop: scale(250),
+          marginTop: ratioedSize(scale(220),scale(250)),
           fontSize: ratioedSize(scale(12),scale(19)),
           backgroundColor: "#2AACAC",
           borderRadius: scale(20),

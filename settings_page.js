@@ -273,7 +273,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(140),
-                fontSize: 18,
+                fontSize: ratioedSize(scale(12),scale(18)),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -292,7 +292,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(80),
-                fontSize: 18,
+                fontSize: ratioedSize(scale(12),scale(18)),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -314,7 +314,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(80),
-                fontSize: 18,
+                fontSize: ratioedSize(scale(12),scale(18)),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
   },
   show_text: {
     marginLeft: scale(5),
-    fontSize: 20,
+    fontSize: ratioedSize(scale(13),scale(20)),
     marginTop: scale(10),
     color: "#2AACAC",
     fontWeight: "bold",

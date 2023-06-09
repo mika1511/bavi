@@ -21,6 +21,18 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useFonts } from "expo-font";
 import { useState } from "react";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const getFirstName = async (phoneNo) => {
   try {
     const response = await axios.get(
@@ -150,7 +162,7 @@ export function PaymentScreen() {
               style={{
                 marginRight: scale(140),
                 marginBottom: scale(10),
-                fontSize: scale(18),
+                fontSize: ratioedSize(scale(12),scale(18)),
                 fontWeight: "bold",
               }}
             >
@@ -200,7 +212,7 @@ export function PaymentScreen() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: scale(16),
+              fontSize:  ratioedSize(scale(10),scale(16)),
               color: "#323639",
             }}
           >
@@ -226,14 +238,14 @@ export function PaymentScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: scale(20),
+                fontSize:  ratioedSize(scale(12),scale(20)),
                 color: "#45484D",
               }}
             >
               {" Subtotal Price:\n"}
               <Text
                 style={{
-                  fontSize: scale(16),
+                  fontSize: ratioedSize(scale(10),scale(16)),
                 }}
               >
                 {" "}
@@ -244,7 +256,7 @@ export function PaymentScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: scale(20),
+                fontSize: ratioedSize(scale(12),scale(20)),
                 color: "#595e6c",
               }}
             >
@@ -252,7 +264,7 @@ export function PaymentScreen() {
               {"\n"}
               <Text
                 style={{
-                  fontSize: scale(16),
+                  fontSize: ratioedSize(scale(10),scale(16)),
                 }}
               >
                 ₹60
@@ -264,7 +276,7 @@ export function PaymentScreen() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: scale(16),
+              fontSize: ratioedSize(scale(10),scale(16)),
               color: "#323639",
             }}
           >
@@ -302,7 +314,7 @@ export function PaymentScreen() {
             <Text
               style={{
                 marginTop: -scale(35),
-                fontSize: scale(16),
+                fontSize: ratioedSize(scale(10),scale(16)),
                 color: "#2aacac",
               }}
               onPress={() => {
@@ -333,7 +345,7 @@ export function PaymentScreen() {
                 {
                   marginTop: -scale(40),
                   marginBottom: scale(15),
-                  fontSize: scale(16),
+                  fontSize: ratioedSize(scale(10),scale(16)),
                   color: "#2aacac",
                 },
               ]}
@@ -347,7 +359,7 @@ export function PaymentScreen() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: scale(16),
+              fontSize: ratioedSize(scale(10),scale(16)),
               color: "#323639",
             }}
           >
@@ -512,7 +524,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    fontSize: 26,
+    fontSize: ratioedSize(scale(16),scale(26)),
     fontWeight: "bold",
     color: "#2aacac",
   },

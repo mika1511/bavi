@@ -27,6 +27,18 @@ import SelectDropdown from "react-native-select-dropdown";
 import { backendIP } from "./NetworkConfig";
 const Options = ["Doctor", "Nurse", "Attender"];
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const createCareerAlert = () => {
   Alert.alert(
     "Thankyou for applying",
@@ -125,7 +137,7 @@ export function CareerOption() {
               styles.input_button,
               styles.shadow,
               {
-                fontSize: 18,
+                fontSize: ratioedSize(scale(12),scale(18)),
               },
             ]}
             placeholder="Specialization"
@@ -161,7 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: scale(50),
     alignSelf: "center",
-    borderRadius: 11,
+    borderRadius: scale(11),
     backgroundColor: "#FFFFFF",
     textAlign: "center",
     textAlignVertical: "center",
@@ -169,17 +181,17 @@ const styles = StyleSheet.create({
   shadow: {
     shadowOffset: { width: 4, height: 4 },
     shadowColor: "#2AACAC",
-    shadowOpacity: 20,
-    shadowRadius: 2,
-    elevation: 5,
+    shadowOpacity: scale(20),
+    shadowRadius: scale(2),
+    elevation: scale(5),
   },
   login_button: {
     width: "30%",
-    borderRadius: 11,
-    height: 50,
+    borderRadius: scale(11),
+    height: scale(50),
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 50,
+    marginTop: scale(50),
     //marginLeft: 135,
     alignSelf: "center",
     backgroundColor: "white",

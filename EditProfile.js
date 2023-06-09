@@ -18,6 +18,18 @@ import SelectDropdown from "react-native-select-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import { backendIP } from "./NetworkConfig";
 
+const screenWidth = Dimensions.get("window").width;
+ 
+
+function ratioedSize(size1, size2) {
+  if (screenWidth > 400) {
+    return size1;
+  }
+  else {
+    return size2;
+  }
+}
+
 const Genders = ["Male", "Female", "Other"];
 
 const editAllDetails = async (
@@ -217,7 +229,7 @@ const styles = StyleSheet.create({
   },
   absoluteContainer: {
     position: "absolute",
-    bottom: 0,
+    bottom: scale(0),
     transform: [{ rotateX: "180deg" }, { rotateY: "180deg" }],
   },
   innerContainer: {
@@ -235,14 +247,14 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   title: {
-    fontSize: 30,
+    fontSize: ratioedSize(scale(20),scale(30)),
     fontWeight: "bold",
   },
   input_button: {
     width: "80%",
-    height: 50,
+    height: scale(50),
     marginTop: "5%",
-    borderRadius: 11,
+    borderRadius: scale(11),
     backgroundColor: "#FFFFFF",
     textAlign: "center",
     textAlignVertical: "center",
@@ -251,14 +263,14 @@ const styles = StyleSheet.create({
   shadow: {
     shadowOffset: { width: 4, height: 4 },
     shadowColor: "#2AACAC",
-    shadowOpacity: 20,
-    shadowRadius: 2,
-    elevation: 12,
+    shadowOpacity: scale(20),
+    shadowRadius: scale(2),
+    elevation: scale(12),
   },
   login_button: {
     width: "30%",
-    borderRadius: 11,
-    height: 50,
+    borderRadius: scale(11),
+    height: scale(50),
     alignItems: "center",
     justifyContent: "center",
     marginTop: scale(50),
