@@ -166,7 +166,7 @@ export function O2Screen() {
           styles.downNavigator,
           styles.shadows,
           {
-            //marginTop: scale(0),
+            marginTop: scale(50),
           },
         ]}
       >

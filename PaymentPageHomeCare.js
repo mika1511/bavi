@@ -314,8 +314,8 @@ export function PaymentScreenHomeCare() {
               console.log(servicesString);
               createOrder(servicesString, mTotal, mPhone, "Online", "N/A");
               Linking.openURL(
-                "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
-                  (mTotal+60)
+                "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=1"
+                  
               );
               
             }}

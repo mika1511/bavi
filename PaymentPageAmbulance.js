@@ -397,7 +397,7 @@ export function PaymentScreenAmbulance() {
                   );
 
                   Linking.openURL(
-                    "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                    "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
                       (mTotal + 60)
                   );
                 } else {
@@ -412,7 +412,7 @@ export function PaymentScreenAmbulance() {
                   );
 
                   Linking.openURL(
-                    "upi://pay?pa=hurvashidewangan8118@okicici&pn=HurvashiDewangan&cu=INR&am=" +
+                    "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
                       (mTotal + 60)
                   );
                 }
