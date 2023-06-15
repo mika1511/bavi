@@ -395,11 +395,11 @@ export function PaymentScreenAmbulance() {
                     "Online",
                     selectedOption
                   );
-
-                  Linking.openURL(
-                    "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
-                      (mTotal + 60)
-                  );
+                  Navigation.navigate("UPIScreen");
+                  // Linking.openURL(
+                  //   "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
+                  //     (mTotal + 60)
+                  // );
                 } else {
                   console.log(selectedOption);
                   console.log(servicesString);
@@ -410,11 +410,11 @@ export function PaymentScreenAmbulance() {
                     "Online",
                     selectedOption
                   );
-
-                  Linking.openURL(
-                    "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
-                      (mTotal + 60)
-                  );
+                  Navigation.navigate("UPIScreen");
+                  // Linking.openURL(
+                  //   "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
+                  //     (mTotal + 60)
+                  // );
                 }
               } else {
                 createAlertForService();

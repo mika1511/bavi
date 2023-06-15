@@ -376,10 +376,11 @@ export function PaymentScreen() {
                   "Online",
                   selectedOption
                 );
-                Linking.openURL(
-                  "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
-                    (mTotal + 60)
-                );
+                // Linking.openURL(
+                //   "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=" +
+                //     (mTotal + 60)
+                // );
+                Navigation.navigate("UPIScreen");
               } else {
                 createAlertForService();
               }

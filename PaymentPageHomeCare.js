@@ -313,10 +313,11 @@ export function PaymentScreenHomeCare() {
             onPress={() => {
               console.log(servicesString);
               createOrder(servicesString, mTotal, mPhone, "Online", "N/A");
-              Linking.openURL(
-                "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=1"
+              // Linking.openURL(
+              //   "upi://pay?pa=umarao16@okaxis&pn=MrKolanidiUmaMaheshwarRao&cu=INR&am=1"
                   
-              );
+              // );
+              Navigation.navigate("UPIScreen");
               
             }}
             style={[styles.services_box1, styles.shadow]}

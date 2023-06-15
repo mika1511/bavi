@@ -32,6 +32,7 @@ import { PaymentScreen } from "./PaymentPage.js";
 import { FDB } from "./Dead_Body.js";
 import { PaymentScreenAmbulance } from "./PaymentPageAmbulance.js";
 import { PaymentScreenHomeCare } from "./PaymentPageHomeCare.js";
+import { UPIScreen } from "./TemporaryUPI.js";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -258,6 +259,13 @@ export default function App() {
             headerShown: false,
           }}
           component={PaymentScreenHomeCare}
+        />
+        <Stack.Screen
+          name="UPIScreen"
+          options={{
+            headerShown: false,
+          }}
+          component={UPIScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
