@@ -19,16 +19,12 @@ import { ScrollView } from "react-native-virtualized-view";
 import QR from "./assets/QR.svg";
 import { Touchable } from "react-native";
 
-
-
 const screenWidth = Dimensions.get("window").width;
- 
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
     return size1;
-  }
-  else {
+  } else {
     return size2;
   }
 }
@@ -51,33 +47,53 @@ export function UPIScreen() {
   const Navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{
-        
-        alignSelf:"center"
-      }}>
+      <View
+        style={{
+          alignSelf: "center",
+        }}
+      >
         {/* IMAGE */}
-        <QR height={scale(1000)} width={scale(1000)}style={{
-        marginTop:scale(-400),
-        alignSelf:"center"
-      }}/>
+        <QR
+          height={scale(500)}
+          width={scale(500)}
+          style={{
+            marginTop: scale(-150),
+            alignSelf: "center",
+          }}
+        />
       </View>
-      <Text style={[styles.servicesText1, styles.shadow,{
-        marginTop:scale(-380)
-      }]}>{"SCAN QR CODE\n\nOR\n"}</Text>
-      <Text styles={[styles.servicesText1,{
-        marginTop: scale(40),
-        fontSize:scale(20),
-      }]}>please copy the below UPI ID to pay</Text>
-      <View style={[styles.shadow,styles.services_box1]}>
-        
-       <Text selectable={true}
-    //    onPress={() => {
-    //           copyToClipboard();
-    //         }}
-        style={styles.servicesText}>
-        umarao16@okaxis
-       </Text>
-      
+      <Text
+        style={[
+          styles.servicesText1,
+          styles.shadow,
+          {
+            marginTop: scale(-170),
+          },
+        ]}
+      >
+        {"SCAN QR CODE\n\nOR\n"}
+      </Text>
+      <Text
+        styles={[
+          styles.servicesText1,
+          {
+            marginTop: scale(40),
+            fontSize: scale(20),
+          },
+        ]}
+      >
+        please copy the below UPI ID to pay
+      </Text>
+      <View style={[styles.shadow, styles.services_box1]}>
+        <Text
+          selectable={true}
+          //    onPress={() => {
+          //           copyToClipboard();
+          //         }}
+          style={styles.servicesText}
+        >
+          umarao16@okaxis
+        </Text>
       </View>
       <View
         style={{
@@ -92,7 +108,7 @@ export function UPIScreen() {
             paddingTop: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            fontSize: ratioedSize(scale(12),scale(20)),
+            fontSize: ratioedSize(scale(12), scale(20)),
             fontWeight: "bold",
             width: "70%",
           }}
@@ -101,12 +117,12 @@ export function UPIScreen() {
         </Text>
         <Text
           style={{
-            fontSize: ratioedSize(scale(12),scale(18)),
+            fontSize: ratioedSize(scale(12), scale(18)),
             //textAlign: "center",
             paddingBottom: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            width:"100%",
+            width: "100%",
           }}
         >
           {
@@ -119,7 +135,7 @@ export function UPIScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(20)
+            marginTop: scale(60),
           },
         ]}
       >
@@ -171,25 +187,23 @@ const styles = StyleSheet.create({
     height: scale(60),
     backgroundColor: "white",
     borderRadius: scale(18),
-    
-    
   },
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: ratioedSize(scale(16),scale(16)),
+    fontSize: ratioedSize(scale(16), scale(16)),
     fontWeight: "bold",
-    textAlign:"center",
-    textAlignVertical:"center",
-    marginTop:scale(15),
+    textAlign: "center",
+    textAlignVertical: "center",
+    marginTop: scale(15),
     color: "black",
   },
   servicesText1: {
     textAlign: "center",
-    fontSize: ratioedSize(scale(16),scale(20)),
+    fontSize: ratioedSize(scale(16), scale(20)),
     fontWeight: "bold",
-    textAlign:"center",
-    textAlignVertical:"center",
+    textAlign: "center",
+    textAlignVertical: "center",
     color: "grey",
   },
   shadow: {
@@ -201,7 +215,7 @@ const styles = StyleSheet.create({
   },
   downNavigator: {
     position: "relative",
-    bottom:scale(-20),
+    bottom: scale(-20),
     width: scale(295),
     height: verticalScale(45),
     alignSelf: "center",
