@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { Dimensions } from "react-native";
 import { Link } from "@react-navigation/native";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
@@ -18,6 +17,8 @@ import { Alert } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import QR from "./assets/QR.svg";
 import { Touchable } from "react-native";
+import Clipboard from "@react-native-community/clipboard";
+
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -30,7 +31,7 @@ function ratioedSize(size1, size2) {
 }
 
 const createContactOption = () =>
-  Alert.alert("Open With ", "Choose an Option", [
+  Alert.alert("Open With", "Choose an Option", [
     {
       text: "cancel",
       status: "cancel",
@@ -45,20 +46,22 @@ const createContactOption = () =>
 export function UPIScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
+
+  const copyToClipboard = () => {
+    Clipboard.setString("umarao16@okaxis");
+    
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          alignSelf: "center",
-        }}
-      >
+      <View style={{ alignSelf: "center" }}>
         {/* IMAGE */}
         <QR
-          height={scale(500)}
-          width={scale(500)}
+          height={scale(700)}
+          width={scale(700)}
           style={{
-            marginTop: scale(-150),
-            alignSelf: "center",
+            marginTop: scale(-230),
+            alignSelf: "flex-start",
           }}
         />
       </View>
@@ -67,7 +70,7 @@ export function UPIScreen() {
           styles.servicesText1,
           styles.shadow,
           {
-            marginTop: scale(-170),
+            marginTop: scale(-240),
           },
         ]}
       >
@@ -81,52 +84,46 @@ export function UPIScreen() {
             fontSize: scale(20),
           },
         ]}
-      >
-        please copy the below UPI ID to pay
-      </Text>
+      > 𝒑𝒍𝒆𝒂𝒔𝒆 𝒄𝒐𝒑𝒚 𝒕𝒉𝒆 𝒃𝒆𝒍𝒐𝒘 𝑼𝑷𝑰 𝑰𝑫 𝒕𝒐 𝒑𝒂𝒚 </Text>
       <View style={[styles.shadow, styles.services_box1]}>
-        <Text
-          selectable={true}
-          //    onPress={() => {
-          //           copyToClipboard();
-          //         }}
-          style={styles.servicesText}
-        >
-          umarao16@okaxis
-        </Text>
+        {/* <TouchableOpacity onPress={copyToClipboard}> */}
+          <Text selectable={true} style={styles.servicesText}>umarao16@okaxis</Text>
+        {/* </TouchableOpacity> */}
       </View>
       <View
-        style={{
+        style={[styles.services_box,{
           width: scale(290),
-          marginTop: scale(50),
+          marginTop: scale(30),
           borderWidth: scale(1.5),
           borderRadius: scale(11),
-        }}
+        }]}
       >
         <Text
           style={{
             paddingTop: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            fontSize: ratioedSize(scale(12), scale(20)),
+            fontSize: ratioedSize(scale(12), scale(18)),
             fontWeight: "bold",
             width: "70%",
           }}
         >
           **NOTE**
         </Text>
+
         <Text
           style={{
-            fontSize: ratioedSize(scale(12), scale(18)),
+            fontSize: ratioedSize(scale(10), scale(16)),
             //textAlign: "center",
             paddingBottom: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
             width: "100%",
+            fontWeight:"600"
           }}
         >
           {
-            "Please share the Screenshot of payment deatils on our Whatsapp HelpLine no.: 8871306576 for the confirmation of your payment along with the patient's name"
+            "Please share the Screenshot of payment details on our Whatsapp HelpLine no.: 𝟖𝟖𝟕𝟏𝟑𝟎𝟔𝟓𝟕𝟔 for the confirmation of your payment along with the patient's name"
           }
         </Text>
       </View>
@@ -188,10 +185,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: scale(18),
   },
+  services_box: {
+    width: widthD * 0.8,
+    height: scale(150),
+    backgroundColor: "white",
+    borderRadius: scale(18),
+  },
   servicesText: {
-    //textAlign: "center",
-    //marginTop: 40,
-    fontSize: ratioedSize(scale(16), scale(16)),
+    fontSize: ratioedSize(scale(12), scale(18)),
     fontWeight: "bold",
     textAlign: "center",
     textAlignVertical: "center",
