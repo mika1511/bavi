@@ -17,7 +17,7 @@ import { Alert } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import QR from "./assets/QR.svg";
 import { Touchable } from "react-native";
-import Clipboard from "@react-native-community/clipboard";
+
 
 
 const screenWidth = Dimensions.get("window").width;
@@ -47,11 +47,7 @@ export function UPIScreen() {
   const Tab = createBottomTabNavigator();
   const Navigation = useNavigation();
 
-  const copyToClipboard = () => {
-    Clipboard.setString("umarao16@okaxis");
-    
-  };
-
+  
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ alignSelf: "center" }}>
@@ -86,9 +82,8 @@ export function UPIScreen() {
         ]}
       > 𝒑𝒍𝒆𝒂𝒔𝒆 𝒄𝒐𝒑𝒚 𝒕𝒉𝒆 𝒃𝒆𝒍𝒐𝒘 𝑼𝑷𝑰 𝑰𝑫 𝒕𝒐 𝒑𝒂𝒚 </Text>
       <View style={[styles.shadow, styles.services_box1]}>
-        {/* <TouchableOpacity onPress={copyToClipboard}> */}
           <Text selectable={true} style={styles.servicesText}>umarao16@okaxis</Text>
-        {/* </TouchableOpacity> */}
+       
       </View>
       <View
         style={[styles.services_box,{
