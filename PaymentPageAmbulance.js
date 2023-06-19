@@ -96,7 +96,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 import { FlatList } from "react-native";
 import { SectionList } from "react-native";
-import reactNativeSecureStorage from "react-native-secure-storage";
 export function PaymentScreenAmbulance() {
   const services = [];
   const price_array = [];

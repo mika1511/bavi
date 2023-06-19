@@ -7,7 +7,7 @@ import Personcircle from "./assets/person-circle.svg";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { SearchBar } from "react-native-elements";
+
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { scale, moderateScale, verticalScale } from "react-native-size-matters";
