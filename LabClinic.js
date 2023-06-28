@@ -28,8 +28,12 @@ import { endAsyncEvent } from "react-native/Libraries/Performance/Systrace";
 import axios from "axios";
 import { backendIP } from "./NetworkConfig";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -87,7 +91,7 @@ export const CustomSearchableDropdown = ({
         containerStyle={[styles.login_button, styles.shadow, {}]}
         textInputStyle={{
           marginTop: scale(250),
-          fontSize: ratioedSize(scale(12),scale(19)),
+          fontSize: getFontSize(20),
           backgroundColor: "#2AACAC",
           borderRadius: scale(20),
           height: scale(50),
@@ -110,7 +114,7 @@ export const CustomSearchableDropdown = ({
 
       <View
         style={{
-          marginTop: ratioedSize(scale(30),scale(50)),
+          marginTop: ratioedSize(scale(20),scale(30)),
           height: 400,
         }}
       >
@@ -159,7 +163,7 @@ export const CustomSearchableDropdown = ({
           <Text
             style={{
               fontWeight: "bold",
-              fontSize: ratioedSize(scale(12),scale(16)),
+              fontSize: getFontSize(20),
               borderTopWidth: 1,
               borderColor: "grey"
             }}
@@ -207,7 +211,7 @@ export const CustomSearchableDropdown = ({
               style={{
                 color: "white",
                 textAlign: "center",
-                fontSize: ratioedSize(scale(11),scale(16)),
+                fontSize: getFontSize(18),
                 marginTop: scale(7),
                 fontWeight: "bold",
               }}
@@ -246,7 +250,7 @@ export function LabClinic() {
       >
         <Text
           style={{
-            fontSize: ratioedSize(scale(15),scale(25)),
+            fontSize: getFontSize(24),
             color: "grey",
           }}
         >

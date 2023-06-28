@@ -16,8 +16,12 @@ const widthD = Dimensions.get("window").width;
 import { Linking } from "react-native";
 import { Alert } from "react-native";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -188,7 +192,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: ratioedSize(scale(16),scale(26)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     color: "#FFFFFF",
   },

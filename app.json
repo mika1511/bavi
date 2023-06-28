@@ -30,8 +30,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "504379fb-a420-4936-ad0b-3750acdd8e7c"
+        "projectId": "80538c10-c9d2-48fe-85ba-402acf0ca63c"
       }
-    }
+    },
+    "owner": "bavi"
   }
 }

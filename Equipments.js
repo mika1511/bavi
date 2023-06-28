@@ -12,8 +12,12 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -47,7 +51,7 @@ export function EquipmentsScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>O2 Cylinder</Text>
         </TouchableOpacity>
 
@@ -64,7 +68,7 @@ export function EquipmentsScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Bed</Text>
         </TouchableOpacity>
       </View>
@@ -80,7 +84,7 @@ export function EquipmentsScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Monitor 5-para</Text>
         </TouchableOpacity>
 
@@ -97,7 +101,7 @@ export function EquipmentsScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>BIPAP/C-PAP Machine</Text>
         </TouchableOpacity>
       </View></ScrollView>

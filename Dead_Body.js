@@ -19,8 +19,12 @@ import { TextInput } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ScrollView } from "react-native-virtualized-view";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -87,7 +91,7 @@ export function FDB() {
               styles.servicesText,
               {
                 marginLeft: scale(8),
-                fontSize: ratioedSize(scale(10),scale(14)),
+                fontSize: getFontSize(14),
                 marginTop: scale(5),
                 marginBottom: -scale(5),
               },
@@ -128,7 +132,7 @@ export function FDB() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: ratioedSize(scale(13),scale(18)),
+                    fontSize: getFontSize(20),
                   }}
                 >
                   {"-"}
@@ -164,7 +168,7 @@ export function FDB() {
                     textAlign: "center",
                     color: "white",
                     textAlignVertical: "center",
-                    fontSize: ratioedSize(scale(13),scale(18)),
+                    fontSize: getFontSize(20),
                   }}
                 >
                   {"+"}
@@ -203,7 +207,7 @@ export function FDB() {
                 style={{
                   textAlign: "center",
                   marginTop: scale(7),
-                  fontSize: ratioedSize(scale(13),scale(18)),
+                  fontSize: getFontSize(20),
                   fontWeight: "bold",
                   color: "#2aacac",
                 }}
@@ -323,7 +327,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: ratioedSize(scale(16),scale(26)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     color: "#FFFFFF",
   },
@@ -362,7 +366,7 @@ const styles = StyleSheet.create({
     // borderRadius:scale(11),
   },
   countText: {
-    fontSize: ratioedSize(scale(14),scale(20)),
+    fontSize: getFontSize(20),
     marginBottom: scale(10),
   },
   buttonContainer: {

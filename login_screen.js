@@ -26,6 +26,10 @@ import axios from "axios";
 import { Alert } from "react-native";
 import { backendIP } from "./NetworkConfig";
 import { Dimensions } from "react-native";
+import { PixelRatio } from "react-native";
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
 
 const screenWidth = Dimensions.get("window").width;
 const test = screenWidth > 400;

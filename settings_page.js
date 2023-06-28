@@ -17,8 +17,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import SelectDropdown from "react-native-select-dropdown";
 import { backendIP } from "./NetworkConfig";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -280,7 +284,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(140),
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: getFontSize(20),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -299,7 +303,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(80),
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: getFontSize(20),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -321,7 +325,7 @@ export function SettingsPage({ navigation }) {
             <Text
               style={{
                 marginRight: scale(80),
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: getFontSize(20),
                 fontWeight: "bold",
                 color: "white",
               }}
@@ -362,7 +366,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   title: {
-    fontSize: ratioedSize(scale(16), scale(25)),
+    fontSize: getFontSize(24),
     fontWeight: "400",
   },
   input_button: {
@@ -395,7 +399,7 @@ const styles = StyleSheet.create({
   },
   show_text: {
     marginLeft: scale(5),
-    fontSize: ratioedSize(scale(13),scale(20)),
+    fontSize: getFontSize(20),
     marginTop: scale(10),
     color: "#2AACAC",
     fontWeight: "bold",

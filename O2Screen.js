@@ -16,8 +16,12 @@ import { Linking } from "react-native";
 import { Alert } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -139,7 +143,7 @@ export function O2Screen() {
             paddingTop: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            fontSize: ratioedSize(scale(12),scale(20)),
+            fontSize: getFontSize(22),
             fontWeight: "bold",
             width: "70%",
           }}
@@ -148,12 +152,13 @@ export function O2Screen() {
         </Text>
         <Text
           style={{
-            fontSize: ratioedSize(scale(10),scale(18)),
+            fontSize: getFontSize(18),
             //textAlign: "center",
             paddingBottom: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
             width: "95%",
+            fontWeight:"600",
           }}
         >
           {
@@ -166,7 +171,7 @@ export function O2Screen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(50),
+            marginTop: scale(100),
           },
         ]}
       >
@@ -223,7 +228,7 @@ const styles = StyleSheet.create({
   servicesText: {
     //textAlign: "center",
     //marginTop: 40,
-    fontSize: ratioedSize(scale(16),scale(26)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     color: "#FFFFFF",
   },

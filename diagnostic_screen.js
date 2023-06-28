@@ -11,8 +11,12 @@ import { ScrollView } from "react-native-virtualized-view";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedsize(size1, size2) {
   if (screenWidth > 400) {
@@ -45,7 +49,7 @@ export function DiagnosticScreen() {
           }}
         >
           <Text style={[styles.servicesText,{
-                fontSize: ratioedsize(scale(16),scale(26)),
+                fontSize: getFontSize(26),
           }]}>Laboratory</Text>
         </TouchableOpacity>
 
@@ -62,7 +66,7 @@ export function DiagnosticScreen() {
           }}
         >
           <Text style={[styles.servicesText,{
-                fontSize: ratioedsize(scale(16),scale(26)),
+                fontSize: getFontSize(26),
           }]}>Radiology</Text>
         </TouchableOpacity>
       </View></ScrollView>

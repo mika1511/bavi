@@ -17,10 +17,11 @@ import { Alert } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import QR from "./assets/QR.svg";
 import { Touchable } from "react-native";
-
-
+import { PixelRatio } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -56,7 +57,7 @@ export function UPIScreen() {
           height={scale(700)}
           width={scale(700)}
           style={{
-            marginTop: scale(-230),
+            marginTop: scale(-240),
             alignSelf: "flex-start",
           }}
         />
@@ -86,7 +87,7 @@ export function UPIScreen() {
        
       </View>
       <View
-        style={[styles.services_box,{
+        style={[{
           width: scale(290),
           marginTop: scale(30),
           borderWidth: scale(1.5),
@@ -98,7 +99,7 @@ export function UPIScreen() {
             paddingTop: scale(10),
             paddingLeft: scale(10),
             paddingRight: scale(10),
-            fontSize: ratioedSize(scale(12), scale(18)),
+            fontSize: getFontSize(20),
             fontWeight: "bold",
             width: "70%",
           }}
@@ -108,7 +109,7 @@ export function UPIScreen() {
 
         <Text
           style={{
-            fontSize: ratioedSize(scale(10), scale(16)),
+            fontSize: getFontSize(17),
             //textAlign: "center",
             paddingBottom: scale(10),
             paddingLeft: scale(10),
@@ -118,7 +119,7 @@ export function UPIScreen() {
           }}
         >
           {
-            "Please share the Screenshot of payment details on our Whatsapp HelpLine no.: 𝟖𝟖𝟕𝟏𝟑𝟎𝟔𝟓𝟕𝟔 for the confirmation of your payment along with the patient's name"
+            "Please share the Screenshot of payment details on our Whatsapp HelpLine no.: 𝟖𝟖𝟕𝟏𝟑𝟎𝟔𝟓𝟕𝟔  for the confirmation of your payment along with the patient's name"
           }
         </Text>
       </View>
@@ -127,7 +128,7 @@ export function UPIScreen() {
           styles.downNavigator,
           styles.shadows,
           {
-            marginTop: scale(60),
+            marginTop: scale(40),
           },
         ]}
       >
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: scale(18),
   },
   servicesText: {
-    fontSize: ratioedSize(scale(12), scale(18)),
+    fontSize: getFontSize(22),
     fontWeight: "bold",
     textAlign: "center",
     textAlignVertical: "center",
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
   },
   servicesText1: {
     textAlign: "center",
-    fontSize: ratioedSize(scale(16), scale(20)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     textAlign: "center",
     textAlignVertical: "center",

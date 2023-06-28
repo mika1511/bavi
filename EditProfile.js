@@ -18,8 +18,12 @@ import SelectDropdown from "react-native-select-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import { backendIP } from "./NetworkConfig";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   title: {
-    fontSize: ratioedSize(scale(20),scale(30)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
   },
   input_button: {

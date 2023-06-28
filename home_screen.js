@@ -24,8 +24,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dimensions } from "react-native";
 import { PixelRatio } from "react-native";
 import { ScrollView } from "react-native";
+
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -94,7 +98,7 @@ export function HomeScreen() {
           <Text adjustsFontSizeToFit
             style={{
               fontWeight: "bold",
-              fontSize: ratioedSize(scale(20), scale(30)),
+              fontSize: getFontSize(26),
               color: "white",
             }}
           >
@@ -114,7 +118,7 @@ export function HomeScreen() {
             style={{
               //fontWeight: "bold",
               color: "white",
-              fontSize: ratioedSize(scale(10), scale(20)),
+              fontSize: getFontSize(22),
               fontStyle: "italic",
             }}
           >
@@ -167,7 +171,7 @@ export function HomeScreen() {
             style={{
               fontWeight: "bold",
               color: "#2AA8A0",
-              fontSize: ratioedSize(scale(15), scale(20)),
+              fontSize: getFontSize(26),
             }}
           >
             Services
@@ -193,7 +197,7 @@ export function HomeScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(19), scale(25)),
+                fontSize: getFontSize(26),
                 color: "#2AA8A0",
                 textAlign: "center",
                 marginTop: ratioedSize(scale(10),scale(15)),
@@ -219,7 +223,7 @@ export function HomeScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(19), scale(25)),
+                fontSize: getFontSize(26),
                 color: "#2AA8A0",
                 textAlign: "center",
                 marginTop: ratioedSize(scale(10),scale(15)),
@@ -245,7 +249,7 @@ export function HomeScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(19), scale(25)),
+                fontSize: getFontSize(26),
                 color: "#2AA8A0",
                 textAlign: "center",
                 marginTop: ratioedSize(scale(10),scale(15)),
@@ -271,7 +275,7 @@ export function HomeScreen() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(19), scale(25)),
+                fontSize: getFontSize(26),
                 color: "#2AA8A0",
                 textAlign: "center",
                 marginTop: scale(2),

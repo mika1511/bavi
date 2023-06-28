@@ -14,8 +14,12 @@ import { ScrollView } from "react-native-virtualized-view";
 
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -75,7 +79,7 @@ export function Doctor1() {
               styles.servicesText,
               {
                 marginTop: scale(10),
-                fontSize: ratioedSize(scale(16),scale(26)),
+                fontSize: getFontSize(26),
               },
             ]}
           >
@@ -83,7 +87,7 @@ export function Doctor1() {
             Doctor charges:
           </Text>
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}> Rs. 750 /-</Text>
         </TouchableOpacity>
 
@@ -115,14 +119,14 @@ export function Doctor1() {
               {
                 marginTop: scale(-42),
                 textAlign: "left",
-                fontSize: ratioedSize(scale(16),scale(26)),
+                fontSize: getFontSize(26),
               },
             ]}
           >
             {"\t     "}Contact Us:{" "}
           </Text>
           <Text style={[styles.servicesText,{
-            fontSize: ratioedSize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}> +91-8871306576</Text>
         </TouchableOpacity>
 

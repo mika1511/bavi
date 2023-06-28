@@ -20,8 +20,12 @@ import { Alert } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import { useFonts } from "expo-font";
 import { useState } from "react";
+import { PixelRatio } from "react-native";
+
 
 const screenWidth = Dimensions.get("window").width;
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -162,7 +166,7 @@ export function PaymentScreenAmbulance() {
               style={{
                 marginRight: scale(140),
                 marginBottom: scale(10),
-                fontSize: ratioedSize(scale(12), scale(18)),
+                fontSize: getFontSize(20),
                 fontWeight: "bold",
               }}
             >
@@ -212,7 +216,7 @@ export function PaymentScreenAmbulance() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: scale(16),
+              fontSize: getFontSize(18),
               color: "#323639",
             }}
           >
@@ -238,14 +242,14 @@ export function PaymentScreenAmbulance() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(12), scale(20)),
+                fontSize: getFontSize(22),
                 color: "#45484D",
               }}
             >
               {" Subtotal Price:\n"}
               <Text
                 style={{
-                  fontSize: scale(16),
+                  fontSize: getFontSize(20),
                 }}
               >
                 {" "}
@@ -256,7 +260,7 @@ export function PaymentScreenAmbulance() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(12), scale(20)),
+                fontSize: getFontSize(22),
                 color: "#595e6c",
               }}
             >
@@ -264,7 +268,7 @@ export function PaymentScreenAmbulance() {
               {"\n"}
               <Text
                 style={{
-                  fontSize: ratioedSize(scale(10), scale(16)),
+                  fontSize: getFontSize(20),
                 }}
               >
                 ₹60
@@ -276,7 +280,7 @@ export function PaymentScreenAmbulance() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: ratioedSize(scale(10), scale(16)),
+              fontSize: getFontSize(18),
               color: "#323639",
             }}
           >
@@ -318,7 +322,7 @@ export function PaymentScreenAmbulance() {
             <Text
               style={{
                 marginTop: -scale(35),
-                fontSize: ratioedSize(scale(10), scale(16)),
+                fontSize: getFontSize(20),
                 color: "#2aacac",
               }}
               onPress={() => {
@@ -357,7 +361,7 @@ export function PaymentScreenAmbulance() {
                 {
                   marginTop: -scale(40),
                   marginBottom: scale(15),
-                  fontSize: ratioedSize(scale(10), scale(16)),
+                  fontSize: getFontSize(20),
                   color: "#2aacac",
                 },
               ]}
@@ -375,7 +379,7 @@ export function PaymentScreenAmbulance() {
           <Text
             style={{
               fontWeight: "100",
-              fontSize: ratioedSize(scale(10), scale(16)),
+              fontSize: getFontSize(18),
               color: "#323639",
             }}
           >
@@ -572,7 +576,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    fontSize: ratioedSize(scale(16), scale(26)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     color: "#2aacac",
   },

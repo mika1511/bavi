@@ -11,8 +11,12 @@ import { ScrollView } from "react-native-virtualized-view";
 const heightD = Dimensions.get("window").height;
 const widthD = Dimensions.get("window").width;
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedsize(size1, size2) {
   if (screenWidth > 400) {
@@ -43,7 +47,7 @@ export function HomecareScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedsize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Doctor</Text>
         </TouchableOpacity>
 
@@ -60,7 +64,7 @@ export function HomecareScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedsize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Nurse</Text>
         </TouchableOpacity>
 
@@ -77,7 +81,7 @@ export function HomecareScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedsize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Attender</Text>
         </TouchableOpacity>
 
@@ -94,7 +98,7 @@ export function HomecareScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
         <Text style={[styles.servicesText,{
-          fontSize: ratioedsize(scale(16),scale(26)),
+          fontSize: getFontSize(26),
         }]}>Physiotherapy</Text>
         </TouchableOpacity>
 
@@ -111,7 +115,7 @@ export function HomecareScreen() {
           style={[styles.services_box1, styles.shadow]}
         >
           <Text style={[styles.servicesText,{
-            fontSize: ratioedsize(scale(16),scale(26)),
+            fontSize: getFontSize(26),
           }]}>Diet Food</Text>
         </TouchableOpacity>
       </View></ScrollView>
@@ -176,7 +180,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    marginTop: ratioedsize(scale(25),scale(35)),
+    marginTop: getFontSize(35),
     
     fontWeight: "bold",
     color: "#FFFFFF",

@@ -28,8 +28,12 @@ import { backendIP } from "./NetworkConfig";
 import { Dimensions } from "react-native";
 const Options = ["Doctor", "Nurse", "Attender"];
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -138,7 +142,7 @@ export function CareerOption() {
               styles.input_button,
               styles.shadow,
               {
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: getFontSize(20),
               },
             ]}
             placeholder="Specialization"

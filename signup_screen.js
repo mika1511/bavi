@@ -29,8 +29,12 @@ const createTwoButtonAlert = (alert_title, msg, text1, text2) =>
     { text: text2, onPress: () => console.log("OK Pressed") },
   ]);
 
-  const screenWidth = Dimensions.get("window").width;
- 
+  import { PixelRatio } from "react-native";
+const screenWidth = Dimensions.get("window").width;
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
   function ratioedSize(size1, size2) {
     if (screenWidth > 400) {
@@ -250,7 +254,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   title: {
-    fontSize: ratioedSize(scale(15), scale(25)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
   },
   input_button: {

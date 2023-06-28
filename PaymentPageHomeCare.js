@@ -21,8 +21,12 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useFonts } from "expo-font";
 import { useState } from "react";
 
+import { PixelRatio } from "react-native";
 const screenWidth = Dimensions.get("window").width;
- 
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = size => size / fontScale;
+
 
 function ratioedSize(size1, size2) {
   if (screenWidth > 400) {
@@ -152,7 +156,7 @@ export function PaymentScreenHomeCare() {
               style={{
                 marginRight: scale(140),
                 marginBottom: scale(10),
-                fontSize: ratioedSize(scale(12),scale(18)),
+                fontSize: getFontSize(20),
                 fontWeight: "bold",
               }}
             >
@@ -201,7 +205,7 @@ export function PaymentScreenHomeCare() {
 
           <Text style={{
             fontWeight: "100",
-            fontSize: ratioedSize(scale(10),scale(16)),
+            fontSize: getFontSize(18),
             color: "#323639",
           }}>
             {"BILL SUMMARY\n"}
@@ -224,87 +228,31 @@ export function PaymentScreenHomeCare() {
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: scale(20),
+                fontSize: getFontSize(22),
                 color: "#45484D"
               }}
             >
               {" Subtotal Price:\n"}
               <Text style={{
-                fontSize: ratioedSize(scale(10),scale(16)),
+                fontSize: getFontSize(20),
               }}> ⓘ Additional Charges:</Text>{"\n\n Grand Total:"}
             </Text>
             <Text
               style={{
                 fontWeight: "600",
-                fontSize: ratioedSize(scale(12),scale(20)),
+                fontSize: getFontSize(22),
                 color: "#595e6c"
               }}
             >
               ₹{mTotal}{"\n"}<Text style={{
-                fontSize: ratioedSize(scale(10),scale(16)),
+                fontSize: getFontSize(20),
               }}>₹60</Text>{"\n\n₹"}{mTotal + 60}{' '}
             </Text>
           </View>
-          {/* <Text style={{
-            fontWeight: "100",
-            fontSize: scale(16),
-            color: "#323639",
-          }}>
-            {" \n\nTYPE OF SERVICE"}
-          </Text>
-          <View
-            style={{
-              marginTop: scale(19.69),
-            }}
-          ></View>
-           <View style={[styles.optionsContainer,{
-             flexDirection:"column",
-             alignItems: "flex-start",
-           }]}>
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            selectedOption === 'option1' && styles.selectedOption, {
-              height: scale(25),
-              width: scale(25),
-              marginTop: scale(10),
-            }
-          ]}
-          onPress={() => handleOptionClick('option1')}
-        ></TouchableOpacity>
-        
-        <Text style={{
-          marginTop: -scale(35),
-          fontSize: scale(16),
-          color: "#2aacac"
-        }}>{"\t\t\t\t\t\tHome Collection"}</Text>
-       
-
-        <TouchableOpacity
-          style={[
-            styles.optionButton,
-            selectedOption === 'option2' && styles.selectedOption,{
-              height: scale(25),
-              width: scale(25),
-              marginBottom: scale(5),
-            }
-          ]}
-          onPress={() => handleOptionClick('option2')}
-        >
-         
-        </TouchableOpacity > 
-        
-
-          <Text style={[,{
-          marginTop: -scale(40),
-          marginBottom:scale(15),
-          fontSize: scale(16),
-          color: "#2aacac"
-        }]}>{"\t\t\t\t\t\tGo To Lab"}</Text>
-        </View>  */}
+          
         <Text style={{
             fontWeight: "100",
-            fontSize: ratioedSize(scale(10),scale(16)),
+            fontSize: getFontSize(18),
             color: "#323639",
           }}>
             {" \nMODE OF PAYMENT\n"}
@@ -449,7 +397,7 @@ const styles = StyleSheet.create({
   },
   servicesText: {
     textAlign: "center",
-    fontSize: ratioedSize(scale(16),scale(26)),
+    fontSize: getFontSize(26),
     fontWeight: "bold",
     color: "#2aacac",
   },
